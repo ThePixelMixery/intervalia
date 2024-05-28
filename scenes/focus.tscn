@@ -1,0 +1,115 @@
+[gd_scene load_steps=2 format=3 uid="uid://c64unnd0sbjg3"]
+
+[ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/timer.tscn" id="1_pgu5i"]
+
+[node name="Control_Focus" type="Control"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control_Buffer" type="Control" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox_Focus" type="VBoxContainer" parent="Control_Buffer"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control_BufferTop" type="Control" parent="Control_Buffer/VBox_Focus"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TexProg_Pomo" type="TextureProgressBar" parent="Control_Buffer/VBox_Focus"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+fill_mode = 4
+
+[node name="TexProg_Minute" type="TextureProgressBar" parent="Control_Buffer/VBox_Focus/TexProg_Pomo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 4
+
+[node name="Label_Active" type="Label" parent="Control_Buffer/VBox_Focus/TexProg_Pomo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -25.0
+offset_right = 20.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control_Buffer/VBox_Focus/TexProg_Pomo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -2.0
+offset_right = 20.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label_Pass" type="Label" parent="Control_Buffer/VBox_Focus/TexProg_Pomo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control_BufferMid" type="Control" parent="Control_Buffer/VBox_Focus"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="CheckButton" type="CheckButton" parent="Control_Buffer/VBox_Focus"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+text = "Minute Mode
+"
+
+[node name="Control_TimerFocus" parent="Control_Buffer/VBox_Focus" instance=ExtResource("1_pgu5i")]
+layout_mode = 2
+
+[node name="Control_BufferBot" type="Control" parent="Control_Buffer/VBox_Focus"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[editable path="Control_Buffer/VBox_Focus/Control_TimerFocus"]

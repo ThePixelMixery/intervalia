@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmdmhbhfstocv"]
+
+[ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
+[ext_resource type="Script" path="res://scenes/HSplit_Base.gd" id="1_lkwbo"]
+
+[node name="Control_Buffer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplit_Base" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 500
+collapsed = true
+script = ExtResource("1_lkwbo")
+
+[node name="Panel" type="Panel" parent="HSplit_Base"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplit_Base"]
+layout_mode = 2
+
+[node name="HBox_Menu" type="HBoxContainer" parent="HSplit_Base/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+alignment = 1
+
+[node name="Button_Focus" type="Button" parent="HSplit_Base/VBoxContainer/HBox_Menu"]
+layout_mode = 2
+text = "Focus Menu"
+
+[node name="Control" type="Control" parent="HSplit_Base/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="HSplit_Base/VBoxContainer/Control"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_right = 48.0
+grow_vertical = 2
+text = "
+"
+
+[node name="Control_Main" type="Control" parent="HSplit_Base/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control_Focus" parent="HSplit_Base/VBoxContainer/Control_Main" instance=ExtResource("1_fjvi8")]
+layout_mode = 1
+
+[connection signal="toggled" from="HSplit_Base/VBoxContainer/Control/CheckButton" to="HSplit_Base" method="_on_check_button_toggled"]

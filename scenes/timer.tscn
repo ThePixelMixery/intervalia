@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://c61uutjbw8lpq"]
+
+[node name="Control_Timer" type="Control"]
+custom_minimum_size = Vector2(168, 146)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 168.0
+offset_bottom = 146.0
+
+[node name="VBox_Pomo" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox_Title" type="HBoxContainer" parent="VBox_Pomo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button_Title" type="Button" parent="VBox_Pomo/HBox_Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_Dynamic" type="Button" parent="VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "D"
+
+[node name="Button_F?" type="Button" parent="VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "F
+"
+
+[node name="Button_Break" type="Button" parent="VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "B
+"
+
+[node name="HBox_Details" type="HBoxContainer" parent="VBox_Pomo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label_Act" type="Label" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator1" type="VSeparator" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Pass" type="Label" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator2" type="VSeparator" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Pomo" type="Label" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator3" type="VSeparator" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Long" type="Label" parent="VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBox_Pomo"]
+layout_mode = 2
+
+[node name="HBox_Actions" type="HBoxContainer" parent="VBox_Pomo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button_Stop" type="Button" parent="VBox_Pomo/HBox_Actions"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="Label_Act" type="Label" parent="VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator1" type="VSeparator" parent="VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+
+[node name="Check_Act" type="CheckButton" parent="VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+
+[node name="Label_Pass" type="Label" parent="VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="Button_Play" type="Button" parent="VBox_Pomo/HBox_Actions"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
