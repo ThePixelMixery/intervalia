@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://c6rll0b4cqh6u"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 225.0
+offset_right = 45.0
+offset_bottom = 265.0
+
+[node name="Window" type="Window" parent="."]
+title = "Editing Pomodoro"
+initial_position = 1
+size = Vector2i(265, 550)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -220.0
+offset_right = 215.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox_Editor" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Grid_Number" type="GridContainer" parent="Margin/VBox_Editor"]
+layout_mode = 2
+columns = 2
+
+[node name="Label_Title" type="Label" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Title"
+
+[node name="TextEdit_Title" type="TextEdit" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = " Pomodoro 
+"
+
+[node name="Label_Work" type="Label" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Work"
+
+[node name="SpinBox_Work" type="SpinBox" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+max_value = 90.0
+value = 25.0
+alignment = 1
+update_on_text_changed = true
+suffix = " Minutes"
+
+[node name="Label_Rest" type="Label" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Rest
+"
+
+[node name="SpinBox_Rest" type="SpinBox" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 5.0
+alignment = 1
+update_on_text_changed = true
+suffix = " Minutes"
+
+[node name="Label_Count" type="Label" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+tooltip_text = "When Count is set to 0 pomos, Rest and breaks will be disabled."
+mouse_filter = 1
+text = "Count (?)"
+
+[node name="SpinBox_Pomos" type="SpinBox" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 4.0
+alignment = 1
+update_on_text_changed = true
+suffix = "Pomodoros"
+
+[node name="Label_Break" type="Label" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Break"
+
+[node name="SpinBox_Break" type="SpinBox" parent="Margin/VBox_Editor/Grid_Number"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 15.0
+alignment = 1
+update_on_text_changed = true
+suffix = "Minutes"
+
+[node name="Grid_Check" type="GridContainer" parent="Margin/VBox_Editor"]
+layout_mode = 2
+columns = 2
+
+[node name="Label_Dynamic" type="Label" parent="Margin/VBox_Editor/Grid_Check"]
+layout_mode = 2
+tooltip_text = "Rest time is accumulated during Work time"
+mouse_filter = 1
+text = "Dynamic Break Bank (?)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Check_Dynamic" type="CheckButton" parent="Margin/VBox_Editor/Grid_Check"]
+custom_minimum_size = Vector2(0, 40)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Label_AutoWork" type="Label" parent="Margin/VBox_Editor/Grid_Check"]
+layout_mode = 2
+text = "Auto-start work time"
+
+[node name="Check_AutoWork" type="CheckButton" parent="Margin/VBox_Editor/Grid_Check"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = " "
+icon_alignment = 1
+
+[node name="Label_AutoRest" type="Label" parent="Margin/VBox_Editor/Grid_Check"]
+layout_mode = 2
+text = "Auto-start rest time"
+
+[node name="Check_AutoRest" type="CheckButton" parent="Margin/VBox_Editor/Grid_Check"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = " "
+icon_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Margin/VBox_Editor"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/VBox_Editor"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Review Details"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBox_Pomo" type="VBoxContainer" parent="Margin/VBox_Editor"]
+layout_mode = 2
+
+[node name="HBox_Title" type="HBoxContainer" parent="Margin/VBox_Editor/VBox_Pomo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button_Title" type="Button" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button_Dynamic" type="Button" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "D"
+
+[node name="Button_Work" type="Button" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "W"
+
+[node name="Button_Break" type="Button" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "B
+"
+
+[node name="HBox_Details" type="HBoxContainer" parent="Margin/VBox_Editor/VBox_Pomo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label_Act" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator1" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Pass" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Pomo" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="VSeparator3" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Long" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Margin/VBox_Editor"]
+layout_mode = 2
+
+[node name="HBox_Actions" type="HBoxContainer" parent="Margin/VBox_Editor"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button_Cancel" type="Button" parent="Margin/VBox_Editor/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Button_Delete" type="Button" parent="Margin/VBox_Editor/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Delete"
+
+[node name="Button_Confirm" type="Button" parent="Margin/VBox_Editor/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirm"
