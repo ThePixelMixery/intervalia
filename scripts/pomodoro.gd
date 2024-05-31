@@ -1,10 +1,14 @@
 extends Control
 
+
 signal populate_ui(pomo_data: Dictionary)
 signal update_now_work (work_time: Array)
 signal update_now_rest (rest_time: Array)
 signal update_pomos (pomos: int)
 signal play_button (running: bool, empty: bool)
+
+func signal_buffer():
+    pass
 
 var title: String
 
@@ -65,9 +69,7 @@ func unpack_data(pomo:Dictionary):
     ratio = float(base_work)/float(base_rest)
     
 func default_pomo():
-    
-
-    title = "Pomodoro"
+    title = " Default"
     dynamic = false
     auto_work = true
     auto_rest = true
@@ -79,6 +81,7 @@ func default_pomo():
     work_time = [25,0]
     pomo_count = 0
     rest_time = [0,0]
+    selected.pomo_node = self
 
 func reset_variable(variable:String):
     match variable:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://drldwgd8fprke"]
+[gd_scene load_steps=2 format=3 uid="uid://d212khl5rh6m4"]
 
 [ext_resource type="Script" path="res://scripts/ui/edit_window.gd" id="1_5mg5u"]
 
@@ -183,7 +183,7 @@ text = "R"
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="Label_Act" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+[node name="Label_Work" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -191,7 +191,7 @@ size_flags_vertical = 1
 [node name="VSeparator1" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
 layout_mode = 2
 
-[node name="Label_Pass" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
+[node name="Label_Rest" type="Label" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
