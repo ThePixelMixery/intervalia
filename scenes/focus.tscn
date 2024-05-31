@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c64unnd0sbjg3"]
+[gd_scene load_steps=4 format=3 uid="uid://c64unnd0sbjg3"]
 
+[ext_resource type="Script" path="res://scripts/ui/focus_window.gd" id="1_4ydyk"]
 [ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/timer.tscn" id="1_pgu5i"]
+[ext_resource type="Texture2D" uid="uid://c518hyj8atfix" path="res://assets/edit2-200xx.png" id="1_sqkxs"]
 
 [node name="Control_Focus" type="Control"]
 custom_minimum_size = Vector2(500, 0)
@@ -32,10 +34,27 @@ offset_right = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+script = ExtResource("1_4ydyk")
 
 [node name="Control_BufferTop" type="Control" parent="Control_Buffer/VBox_Focus"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Control_Buffer/VBox_Focus/Control_BufferTop"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("1_sqkxs")
+expand_icon = true
 
 [node name="TexProg_Pomo" type="TextureProgressBar" parent="Control_Buffer/VBox_Focus"]
 custom_minimum_size = Vector2(500, 500)
@@ -105,11 +124,11 @@ size_flags_stretch_ratio = 0.0
 text = "Minute Mode
 "
 
-[node name="Control_TimerFocus" parent="Control_Buffer/VBox_Focus" instance=ExtResource("1_pgu5i")]
+[node name="Control_Timer" parent="Control_Buffer/VBox_Focus" instance=ExtResource("1_pgu5i")]
 layout_mode = 2
 
 [node name="Control_BufferBot" type="Control" parent="Control_Buffer/VBox_Focus"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[editable path="Control_Buffer/VBox_Focus/Control_TimerFocus"]
+[connection signal="pressed" from="Control_Buffer/VBox_Focus/Control_BufferTop/Button" to="Control_Buffer/VBox_Focus" method="_on_button_pressed"]

@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=5 format=3 uid="uid://dmdmhbhfstocv"]
 
 [ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
 [ext_resource type="Script" path="res://scenes/HSplit_Base.gd" id="1_lkwbo"]
+
+[sub_resource type="Theme" id="Theme_d1udh"]
+default_font_size = 25
+
+[sub_resource type="Theme" id="Theme_rigwa"]
 
 [node name="Control_Buffer" type="Control"]
 layout_mode = 3
@@ -10,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_d1udh")
 
 [node name="HSplit_Base" type="HSplitContainer" parent="."]
 layout_mode = 1
@@ -22,6 +28,7 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_rigwa")
 split_offset = 500
 collapsed = true
 script = ExtResource("1_lkwbo")
@@ -44,7 +51,7 @@ text = "Focus Menu"
 [node name="Control" type="Control" parent="HSplit_Base/VBoxContainer"]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="HSplit_Base/VBoxContainer/Control"]
+[node name="Check_Tools" type="CheckButton" parent="HSplit_Base/VBoxContainer/Control"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 1
 anchors_preset = 9
@@ -62,4 +69,4 @@ size_flags_vertical = 3
 [node name="Control_Focus" parent="HSplit_Base/VBoxContainer/Control_Main" instance=ExtResource("1_fjvi8")]
 layout_mode = 1
 
-[connection signal="toggled" from="HSplit_Base/VBoxContainer/Control/CheckButton" to="HSplit_Base" method="_on_check_button_toggled"]
+[connection signal="toggled" from="HSplit_Base/VBoxContainer/Control/Check_Tools" to="HSplit_Base" method="_on_check_button_toggled"]
