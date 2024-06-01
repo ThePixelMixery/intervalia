@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 signals="*res://scripts/autoload/signal_bus.gd"
 selected="*res://scripts/autoload/selected.gd"
+toolbox="*res://scripts/autoload/toolbox.gd"
 
 [display]
 

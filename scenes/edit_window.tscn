@@ -5,9 +5,8 @@
 [node name="Window" type="Window"]
 title = "Editing Pomodoro"
 initial_position = 1
-size = Vector2i(400, 610)
+size = Vector2i(400, 623)
 exclusive = true
-always_on_top = true
 popup_window = true
 
 [node name="Margin" type="MarginContainer" parent="."]
@@ -36,7 +35,7 @@ layout_mode = 2
 text = "Title"
 
 [node name="TextEdit_Title" type="TextEdit" parent="Margin/VBox_Editor/Grid_Number"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = " Pomodoro 
@@ -50,8 +49,10 @@ text = "Work"
 [node name="SpinBox_Work" type="SpinBox" parent="Margin/VBox_Editor/Grid_Number"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+min_value = 1.0
 max_value = 90.0
 value = 25.0
+rounded = true
 alignment = 1
 update_on_text_changed = true
 suffix = " Minutes"
@@ -66,6 +67,7 @@ text = "Rest
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 value = 5.0
+rounded = true
 alignment = 1
 update_on_text_changed = true
 suffix = " Minutes"
@@ -187,6 +189,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSeparator1" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
 layout_mode = 2
@@ -195,6 +199,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSeparator2" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
 layout_mode = 2
@@ -203,6 +209,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VSeparator3" type="VSeparator" parent="Margin/VBox_Editor/VBox_Pomo/HBox_Details"]
 layout_mode = 2
@@ -211,6 +219,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBox_Actions" type="HBoxContainer" parent="Margin/VBox_Editor"]
 custom_minimum_size = Vector2(0, 40)
@@ -232,3 +242,15 @@ size_flags_horizontal = 3
 text = "Confirm"
 
 [connection signal="close_requested" from="." to="Margin/VBox_Editor" method="_on_window_close_requested"]
+[connection signal="focus_exited" from="Margin/VBox_Editor/Grid_Number/TextEdit_Title" to="Margin/VBox_Editor" method="_on_text_edit_title_focus_exited"]
+[connection signal="text_changed" from="Margin/VBox_Editor/Grid_Number/TextEdit_Title" to="Margin/VBox_Editor" method="_on_text_edit_title_text_changed"]
+[connection signal="value_changed" from="Margin/VBox_Editor/Grid_Number/SpinBox_Work" to="Margin/VBox_Editor" method="_on_spin_box_work_value_changed"]
+[connection signal="value_changed" from="Margin/VBox_Editor/Grid_Number/SpinBox_Rest" to="Margin/VBox_Editor" method="_on_spin_box_rest_value_changed"]
+[connection signal="value_changed" from="Margin/VBox_Editor/Grid_Number/SpinBox_Pomo" to="Margin/VBox_Editor" method="_on_spin_box_pomo_value_changed"]
+[connection signal="value_changed" from="Margin/VBox_Editor/Grid_Number/SpinBox_Long" to="Margin/VBox_Editor" method="_on_spin_box_long_value_changed"]
+[connection signal="toggled" from="Margin/VBox_Editor/Grid_Check/Check_Dynamic" to="Margin/VBox_Editor" method="_on_check_dynamic_toggled"]
+[connection signal="toggled" from="Margin/VBox_Editor/Grid_Check/Check_AutoWork" to="Margin/VBox_Editor" method="_on_check_auto_work_toggled"]
+[connection signal="toggled" from="Margin/VBox_Editor/Grid_Check/Check_AutoRest" to="Margin/VBox_Editor" method="_on_check_auto_rest_toggled"]
+[connection signal="pressed" from="Margin/VBox_Editor/HBox_Actions/Button_Cancel" to="Margin/VBox_Editor" method="_on_button_cancel_pressed"]
+[connection signal="pressed" from="Margin/VBox_Editor/HBox_Actions/Button_Delete" to="Margin/VBox_Editor" method="_on_button_delete_pressed"]
+[connection signal="pressed" from="Margin/VBox_Editor/HBox_Actions/Button_Confirm" to="Margin/VBox_Editor" method="_on_button_confirm_pressed"]

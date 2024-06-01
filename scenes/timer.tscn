@@ -52,13 +52,13 @@ custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
-text = "W"
+text = "AW"
 
 [node name="Button_Rest" type="Button" parent="MarginContainer/VBox_Pomo/HBox_Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
-text = "R"
+text = "AR"
 
 [node name="HBox_Details" type="HBoxContainer" parent="MarginContainer/VBox_Pomo"]
 custom_minimum_size = Vector2(0, 60)
@@ -126,6 +126,7 @@ layout_mode = 2
 
 [node name="Check_Work" type="CheckButton" parent="MarginContainer/VBox_Pomo/HBox_Actions"]
 layout_mode = 2
+button_pressed = true
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBox_Pomo/HBox_Actions"]
 layout_mode = 2
@@ -144,5 +145,8 @@ toggle_mode = true
 icon = ExtResource("3_kj1sq")
 expand_icon = true
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="MarginContainer/VBox_Pomo/HBox_Actions/Button_Stop" to="." method="_on_button_stop_pressed"]
 [connection signal="toggled" from="MarginContainer/VBox_Pomo/HBox_Actions/Button_Play" to="." method="_on_button_play_toggled"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

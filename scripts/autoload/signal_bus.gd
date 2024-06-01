@@ -1,3 +1,3 @@
 extends Node
 
-signal edit_pomo
+signal update_focus()
