@@ -54,6 +54,7 @@ func update_rest(new_rest: Array):
 func update_pomos(current: int):
 	toolbox.update_text(pomos, 1, current, max_pomo)
 
-func play_button(running: bool, empty: bool):
+func play_button(running: bool, empty: bool, working: bool):
 	play.icon = pause_image if running else play_image
-	play.disabled = empty
+	play.disabled = true if empty and not running else false 
+	on.button_pressed = true if working else false

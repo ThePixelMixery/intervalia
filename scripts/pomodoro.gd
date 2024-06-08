@@ -5,7 +5,7 @@ signal populate_ui(pomo_data: Dictionary)
 signal update_work (work: Array)
 signal update_rest (rest: Array)
 signal update_pomos (pomos: int)
-signal play_button (running: bool, empty: bool)
+signal play_button (running: bool, empty: bool, switch: bool)
 
 func signal_buffer():
     pass
@@ -80,14 +80,15 @@ func default_pomo():
     auto_rest = true
     #base_work = 25
     base_work = 1
-    base_rest = 5
+    base_rest = 1
     ratio = float(base_work)/float(base_rest)
-    base_pomo = 4
+    base_pomo = 1
     base_long = 15
     #work = [25,0]
     work = [0,3]
     pomo = 0
-    rest = [0,0]
+    #rest = [0,0]
+    rest = [0,3]
     selected.pomo_node = self
 
 func reset_variable(variable:String):
@@ -108,29 +109,28 @@ func _on_button_stop_pressed():
 
 func _on_button_play_toggled(toggled_on:bool):
     running = toggled_on
-    
-    play_button.emit(running, empty)
-    print("running timer command")
+    toolbox.pront("running timer command")
     run_timer()
+    play_button.emit(running, empty, working)
 
 func run_timer():
     if running:
-        print("starting timer")
+        toolbox.pront("starting timer")
         timer.start()
     else:
-        print("stoping timer")
+        toolbox.pront("stoping timer")
         timer.stop()
-
+    
 func _on_timer_timeout():
     if working:
-        print("doing work time updates")
+        toolbox.pront("doing work time updates")
         running_work()
     elif empty:
-        print("rest time is empty")
+        toolbox.pront("rest time is empty")
         pass
     else:
-        print("beep boop")
-        pass
+        toolbox.pront("doing rest time updates")
+        running_rest()
 
 func running_work():
     work[1] -= 1
@@ -142,16 +142,41 @@ func running_work():
         work[0] -= 1
         work[1] = 59
     update_work.emit(work)
-    
+
+func running_rest():
+    rest[1] -= 1
+    if rest[0] <= 0 and rest[1] <= 0:
+        timeout()
+    elif rest[1] == -1:
+        rest[0] -= 1
+        rest[1] = 59
+    update_rest.emit(rest)
+
 func timeout():
     if working:
-        print ("timed out working")
-        working = false
-        running = false
-        run_timer()
-        pomo += 1
+        toolbox.pront ("timed out working")
+        working = false if auto_rest else true
+        running = true if auto_rest else false
+        iterate_pomo()
+        work[0] = base_work
+        
         update_pomos.emit(pomo)
-        play_button.emit(running,empty)
+        play_button.emit(running, empty, auto_rest)
+    else:
+        if not dynamic:
+            rest[0] = base_rest
+        toolbox.pront ("timed out resting")
+        working = true if auto_work else false
+        running = true if auto_work else false
+        play_button.emit(running, empty, auto_work)
+
+    run_timer()
+
+func iterate_pomo():
+    pomo += 1
+    if pomo > base_pomo:
+        rest[0] += (base_long - base_rest)
+        pomo = 0
 
 func add_to_rest():
     pass

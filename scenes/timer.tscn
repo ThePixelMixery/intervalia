@@ -41,6 +41,12 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
+[node name="Button_Rest" type="Button" parent="MarginContainer/VBox_Pomo/HBox_Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+text = "AR"
+
 [node name="Button_Dynamic" type="Button" parent="MarginContainer/VBox_Pomo/HBox_Settings"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -53,12 +59,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 text = "AW"
-
-[node name="Button_Rest" type="Button" parent="MarginContainer/VBox_Pomo/HBox_Settings"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-text = "AR"
 
 [node name="HBox_Details" type="HBoxContainer" parent="MarginContainer/VBox_Pomo"]
 custom_minimum_size = Vector2(0, 60)

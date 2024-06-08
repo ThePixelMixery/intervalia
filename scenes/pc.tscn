@@ -69,4 +69,13 @@ size_flags_vertical = 3
 [node name="Control_Focus" parent="HSplit_Base/VBoxContainer/Control_Main" instance=ExtResource("1_fjvi8")]
 layout_mode = 1
 
+[node name="VBox_Notifications" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
 [connection signal="toggled" from="HSplit_Base/VBoxContainer/Control/Check_Tools" to="HSplit_Base" method="_on_check_button_toggled"]
