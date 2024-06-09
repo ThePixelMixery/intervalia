@@ -23,7 +23,8 @@ extends VBoxContainer
 var pom: Node = selected.pomo_node
 
 func _ready():
-	title.placeholder_text = pom.title
+	window.title = "Editing %s" % pom.title
+	title.text = pom.title
 	work.value = pom.base_work
 	rest.value = pom.base_rest
 	pomo.value = pom.base_pomo
@@ -31,7 +32,6 @@ func _ready():
 	dynamic.button_pressed = pom.dynamic
 	autowork.button_pressed = pom.auto_work
 	autorest.button_pressed = pom.auto_rest
-	
 	display_title.text = pom.title
 	display_dynamic.disabled = not pom.dynamic
 	display_autoWork.disabled = not pom.auto_work
@@ -44,7 +44,6 @@ func _ready():
 func close():
 	window.queue_free()
 
-
 func _on_window_close_requested():
 	close()
 
@@ -53,7 +52,7 @@ func _on_button_cancel_pressed():
 
 func _on_button_delete_pressed():
 	# coming soon
-	pass # Replace with function body.
+	pass 
 
 func _on_button_confirm_pressed():
 	pom.title = title.text
@@ -61,12 +60,15 @@ func _on_button_confirm_pressed():
 	pom.base_rest = rest.value
 	pom.base_pomo = pomo.value
 	pom.base_long = long.value
+	pom.work = [work.value, 0]
+	pom.pomo = 0
+	if dynamic.button_pressed: pom.rest = [0,0]
+	else: pom.rest = [rest.value, 0]
 	pom.dynamic = dynamic.button_pressed
 	pom.auto_work = autowork.button_pressed
 	pom.auto_rest = autorest.button_pressed
 	pom.populate()
 	close()
-
 
 func _on_text_edit_title_text_changed():
 	display_title.text = title.text

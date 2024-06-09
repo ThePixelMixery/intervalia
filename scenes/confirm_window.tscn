@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://y46ds7frswdp"]
+
+[ext_resource type="Script" path="res://scripts/ui/confirm_window.gd" id="1_xoi7l"]
+
+[node name="Window" type="Window"]
+initial_position = 1
+size = Vector2i(510, 210)
+exclusive = true
+always_on_top = true
+script = ExtResource("1_xoi7l")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox_Text" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Label_Message" type="Label" parent="Margin/VBox_Text"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Placeholder text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Check_Skip" type="CheckBox" parent="Margin/VBox_Text"]
+layout_mode = 2
+text = "Don't show this again"
+
+[node name="HBox_Actions" type="HBoxContainer" parent="Margin/VBox_Text"]
+layout_mode = 2
+
+[node name="Button_Cancel" type="Button" parent="Margin/VBox_Text/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Button_Other" type="Button" parent="Margin/VBox_Text/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Other"
+
+[node name="Button_Accept" type="Button" parent="Margin/VBox_Text/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Accept"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="toggled" from="Margin/VBox_Text/Check_Skip" to="." method="_on_check_skip_toggled"]
+[connection signal="pressed" from="Margin/VBox_Text/HBox_Actions/Button_Cancel" to="." method="_on_button_cancel_pressed"]
+[connection signal="pressed" from="Margin/VBox_Text/HBox_Actions/Button_Other" to="." method="_on_button_other_pressed"]
+[connection signal="pressed" from="Margin/VBox_Text/HBox_Actions/Button_Accept" to="." method="_on_button_accept_pressed"]

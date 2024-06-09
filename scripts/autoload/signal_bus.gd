@@ -1,3 +1,3 @@
 extends Node
 
-signal update_focus()
+signal open_editor()

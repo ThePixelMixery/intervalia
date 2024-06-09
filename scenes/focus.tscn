@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/focus_window.gd" id="1_4ydyk"]
 [ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/timer.tscn" id="1_pgu5i"]
-[ext_resource type="Texture2D" uid="uid://c518hyj8atfix" path="res://assets/edit2-200xx.png" id="1_sqkxs"]
+[ext_resource type="Texture2D" uid="uid://c518hyj8atfix" path="res://assets/image/edit2-200xx.png" id="1_sqkxs"]
 
 [node name="Control_Focus" type="Control"]
 custom_minimum_size = Vector2(500, 0)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drrikjbuuhjly"
+path="res://.godot/imported/bell chime (slice up)).mp3-3f24abf06c2fe743c636deef54738dcd.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/bell chime (slice up)).mp3"
+dest_files=["res://.godot/imported/bell chime (slice up)).mp3-3f24abf06c2fe743c636deef54738dcd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

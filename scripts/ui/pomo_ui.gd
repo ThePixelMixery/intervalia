@@ -20,16 +20,9 @@ extends VBoxContainer
 @onready var code_obj : Control = $"../../"
 
 var max_pomo: int
-var play_image: Texture2D = load("res://assets/play-200xx.png")
-var pause_image: Texture2D = load("res://assets/pause-200xx.png")
-var stop_image: Texture2D = load("res://assets/stop-200xx.png")
-
-func _ready():
-	code_obj.connect("populate_ui", populate_ui)
-	code_obj.connect("update_work", update_work)
-	code_obj.connect("update_rest", update_rest)
-	code_obj.connect("update_pomos", update_pomos)
-	code_obj.connect("play_button", play_button)
+var play_image: Texture2D = load("res://assets/image/play-200xx.png")
+var pause_image: Texture2D = load("res://assets/image/pause-200xx.png")
+var stop_image: Texture2D = load("res://assets/image/stop-200xx.png")
 
 func populate_ui(pomo):
 	max_pomo = pomo["base_pomo"]
@@ -38,10 +31,10 @@ func populate_ui(pomo):
 	dynamic.disabled = not pomo["dynamic"]
 	work.disabled = not pomo["auto_work"]
 	rest.disabled = not pomo["auto_rest"]
-	toolbox.update_text(base_work, 0, pomo["base_work"])
-	toolbox.update_text(base_rest, 0, pomo["auto_rest"])
+	toolbox.update_text(base_rest, 0, pomo["base_rest"])
 	toolbox.update_text(pomos, 1, pomo["pomo"], max_pomo)
 	toolbox.update_text(base_long, 0, pomo["base_long"])
+	toolbox.update_text(base_work, 0, pomo["base_work"])
 	toolbox.update_text(work_time, 2, pomo["work"][0],pomo["work"][1])
 	toolbox.update_text(rest_time, 2, pomo["rest"][0], pomo["rest"][1])
 
@@ -54,7 +47,10 @@ func update_rest(new_rest: Array):
 func update_pomos(current: int):
 	toolbox.update_text(pomos, 1, current, max_pomo)
 
-func play_button(running: bool, empty: bool, working: bool):
-	play.icon = pause_image if running else play_image
-	play.disabled = true if empty and not running else false 
+func play_button(running: bool):
+	play.button_pressed = running
+	play.icon = pause_image if play.button_pressed else play_image
+	
+func switch_button(working: bool, empty:bool):
 	on.button_pressed = true if working else false
+	play.disabled = true if empty and not working else false 
