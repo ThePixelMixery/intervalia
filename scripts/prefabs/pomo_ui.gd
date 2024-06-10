@@ -38,8 +38,11 @@ func populate_ui(pomo):
 	toolbox.update_text(work_time, 2, pomo["work"][0],pomo["work"][1])
 	toolbox.update_text(rest_time, 2, pomo["rest"][0], pomo["rest"][1])
 
-func update_work(new_work: Array):
-	toolbox.update_text(work_time, 2, new_work[0], new_work[1])
+func update_work(new_work: Array, spill: bool = false):
+	if spill:
+		toolbox.update_text(work_time, 3, new_work[0], new_work[1])
+	else:
+		toolbox.update_text(work_time, 2, new_work[0], new_work[1])
 
 func update_rest(new_rest: Array):
 	toolbox.update_text(rest_time, 2, new_rest[0], new_rest[1])

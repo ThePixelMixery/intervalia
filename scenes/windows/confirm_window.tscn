@@ -4,7 +4,7 @@
 
 [node name="Window" type="Window"]
 initial_position = 1
-size = Vector2i(510, 210)
+size = Vector2i(510, 220)
 exclusive = true
 always_on_top = true
 script = ExtResource("1_vrcfc")
@@ -36,6 +36,11 @@ autowrap_mode = 2
 layout_mode = 2
 text = "Don't show this again"
 
+[node name="Button_Other" type="Button" parent="Margin/VBox_Text"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Other"
+
 [node name="HBox_Actions" type="HBoxContainer" parent="Margin/VBox_Text"]
 layout_mode = 2
 
@@ -44,11 +49,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 
-[node name="Button_Other" type="Button" parent="Margin/VBox_Text/HBox_Actions"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Other"
-
 [node name="Button_Accept" type="Button" parent="Margin/VBox_Text/HBox_Actions"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -56,6 +56,6 @@ text = "Accept"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="toggled" from="Margin/VBox_Text/Check_Skip" to="." method="_on_check_skip_toggled"]
+[connection signal="pressed" from="Margin/VBox_Text/Button_Other" to="." method="_on_button_other_pressed"]
 [connection signal="pressed" from="Margin/VBox_Text/HBox_Actions/Button_Cancel" to="." method="_on_button_cancel_pressed"]
-[connection signal="pressed" from="Margin/VBox_Text/HBox_Actions/Button_Other" to="." method="_on_button_other_pressed"]
 [connection signal="pressed" from="Margin/VBox_Text/HBox_Actions/Button_Accept" to="." method="_on_button_accept_pressed"]

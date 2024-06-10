@@ -3,6 +3,12 @@ extends Control
 func signal_buffer():
     pass
 
+var working: bool = true
+var running: bool
+var empty: bool
+var queue_stop: bool
+var spill: bool
+
 var title: String
 
 var auto_rest: bool
@@ -23,15 +29,11 @@ var rest: Array
 var sound_work: String
 var sound_rest: String
 var sound_long: String
-
-var working: bool = true
-var running: bool
-var empty: bool
-var queue_stop: bool
-var mute_bank: Array = [0,0]
 var audio_work: Resource
 var audio_rest: Resource
 var audio_long: Resource
+
+
 
 var pomo_data: Dictionary
 
@@ -40,6 +42,7 @@ var pomo_data: Dictionary
 @onready var add_window = preload("res://scenes/windows/add_time.tscn")
 
 func _ready():
+    
     default_pomo()
     populate()
 
@@ -97,15 +100,13 @@ func default_pomo():
     mute = true
     auto_work = true
     #base_work = 25
-    base_rest = 2
-    base_long = 30
-    base_pomo = 1
-    base_work = 1
-    #work = [25,0]
+    base_rest = 5
+    base_long = 15
+    base_pomo = 4
+    base_work = 25
     rest = [0,0]
     pomo = 0
-    #rest = [0,0]
-    work = [0,5]
+    work = [25,0]
     sound_work = "work-01"
     sound_rest = "rest-01"
     sound_long = "long-01"
@@ -133,11 +134,12 @@ func update_controls():
 
 func _on_button_play_toggled(toggled_on:bool):
     running = toggled_on
-    toolbox.pront("running timer command")
     update_controls()
     if running == true:
         run_timer()
-
+    else:
+        timer.stop()
+        
 func _on_check_work_toggled(toggled_on:bool):
     working = toggled_on
     update_controls()
@@ -148,7 +150,6 @@ func _on_button_add_pressed():
     add_child(add_instance)
 
 func add_work_time(time:Array):
-    toolbox.pront("minutes to add: " )
     if (work[1]+time[1]) > 59:
         time[0] += 1
         time[1] = 59 - time[1]
@@ -177,8 +178,12 @@ func run_timer():
         timer.stop()
     
 func _on_timer_timeout():
-    if toolbox.mute:
-        add_to_mute()
+    if toolbox.mute == false and spill == true:
+        working = false
+        spill = false
+        work = [base_work, 0]
+        ui.update_work(work)
+        update_controls()
     if working:
         toolbox.pront("doing work time updates")
         running_work()
@@ -189,25 +194,27 @@ func _on_timer_timeout():
         toolbox.pront("doing rest time updates")
         running_rest()
 
-func add_to_mute():
-    mute_bank[1] += 1
-    if dynamic:
-        add_to_rest()
-    if mute_bank[1] > 59:
-        mute_bank[0] += 1
-        mute_bank[1] = 0
-    ui.update_work(mute_bank)
-
 func running_work():
-    work[1] -= 1
     if dynamic:
         add_to_rest()
-    if work [0] <= 0 and work [1] <= 0:
-        timeout()
-    elif work[1] == -1:
-        work[0] -= 1
-        work[1] = 59
-    ui.update_work(work)
+
+    if spill:
+        work[1] += 1
+        if work[0] <= base_work and work [1] <= 0:
+            timeout()
+        elif work[1] > 59:
+            work[0] += 1
+            work[1] = 0
+        ui.update_work(work, true)
+
+    else:
+        work[1] -= 1
+        if work [0] <= 0 and work [1] <= 0:
+            timeout()
+        elif work[1] == -1:
+            work[0] -= 1
+            work[1] = 59
+        ui.update_work(work)
 
 func running_rest():
     rest[1] -= 1
@@ -221,12 +228,15 @@ func running_rest():
 
 func timeout():
     if working:
-        working = false if auto_rest else true
-        running = true if auto_rest else false
         iterate_pomo()
-        work[0] = base_work
+        if toolbox.mute:
+            spill = true
+        else:
+            work[0] = base_work
+        working = false if auto_rest else true
+        working = true if spill else false
+        running = true if auto_rest else false
         ui.update_pomos(pomo)
-        ui.play_button(running)
         
     else:
         if not dynamic:

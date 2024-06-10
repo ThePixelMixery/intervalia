@@ -25,16 +25,16 @@ func pront(text: String):
 		printer.get_child(0).free()
 
 func play_sound(selection: int, sound: Resource, play: bool = true):
-	print(selection,sound)
-	# 0 is working background
-	# 1 is resting background
-	if audio.get_child(selection).stream != sound:
-		audio.get_child(selection).stream = sound
-	match selection:
-		0 or 1:
-			if play:
+	if not mute:
+		# 0 is working background
+		# 1 is resting background
+		if audio.get_child(selection).stream != sound:
+			audio.get_child(selection).stream = sound
+		match selection:
+			0 or 1:
+				if play:
+					audio.get_child(selection).play()
+				else:
+					audio.get_child(selection).stop()
+			_:
 				audio.get_child(selection).play()
-			else:
-				audio.get_child(selection).stop()
-		_:
-			audio.get_child(selection).play()

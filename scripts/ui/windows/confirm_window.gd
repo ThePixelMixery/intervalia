@@ -7,6 +7,7 @@ var packed_scene: PackedScene
 var type: String
 var title_text: String
 var mess_text: String
+var accept_text: String
 var other_text: String
 
 var skip: bool
@@ -19,14 +20,17 @@ static func instantiate(confirm_data:Array):
 	instance.type = confirm_data [2]
 	instance.title_text = confirm_data[3]
 	instance.mess_text = confirm_data[4]
-	instance.other_text = confirm_data[5]
+	instance.accept_text = confirm_data[5]
+	instance.other_text = confirm_data[6]
 	return instance
 
 func _ready():
 	var message: Label = get_node("Margin/VBox_Text/Label_Message")
-	var other: Button = get_node("Margin/VBox_Text/HBox_Actions/Button_Other")
+	var other: Button = get_node("Margin/VBox_Text/Button_Other")
+	var accept: Button = get_node("Margin/VBox_Text/HBox_Actions/Button_Accept")
 	title = title_text
 	message.text = mess_text
+	accept.text = accept_text
 	other.text = other_text
 	skip = settings.skip_check[type]
 	unpacked_instance = packed_scene.instantiate()
@@ -57,11 +61,14 @@ func _on_close_requested():
 func _on_button_other_pressed():
 	match type:
 		"edit_pomo":
-			selected.pomo_node.queue_stop = true 
-			if selected.pomo_node.running == false:
+			if selected.pomo_node.dynamic == true and selected.pomo_node.empty != true:
+				selected.pomo_node.queue_stop = true 
+				if selected.pomo_node.working:
+					selected.pomo_node.working = false
+					selected.pomo_node.ui.switch_button(false, false)
+				if selected.pomo_node.running == false:
+					selected.pomo_node._on_button_play_toggled(true)
 				selected.pomo_node.working = false
-				selected.pomo_node._on_button_play_toggled(true)
-				
-			toolbox.pront("stopping")
-			selected.pomo_node.working = false
+			else:
+				confirmed()
 	close()
