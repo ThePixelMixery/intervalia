@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d212khl5rh6m4"]
 
-[ext_resource type="Script" path="res://scripts/ui/edit_window.gd" id="1_5mg5u"]
+[ext_resource type="Script" path="res://scripts/ui/windows/edit_window.gd" id="1_647kw"]
 
 [node name="Window" type="Window"]
 title = "Editing Pomodoro"
@@ -23,7 +23,7 @@ grow_horizontal = 2
 [node name="VBox_Editor" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 alignment = 1
-script = ExtResource("1_5mg5u")
+script = ExtResource("1_647kw")
 
 [node name="Grid_Number" type="GridContainer" parent="Margin/VBox_Editor"]
 layout_mode = 2

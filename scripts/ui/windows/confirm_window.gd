@@ -13,7 +13,7 @@ var skip: bool
 var unpacked_instance: Node
 
 static func instantiate(confirm_data:Array): 
-	var instance = load('res://scenes/confirm_window.tscn').instantiate()
+	var instance = load('res://scenes/windows/confirm_window.tscn').instantiate()
 	instance.parent_node = confirm_data[0]
 	instance.packed_scene = confirm_data[1]
 	instance.type = confirm_data [2]

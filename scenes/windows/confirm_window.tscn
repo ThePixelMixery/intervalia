@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://y46ds7frswdp"]
 
-[ext_resource type="Script" path="res://scripts/ui/confirm_window.gd" id="1_xoi7l"]
+[ext_resource type="Script" path="res://scripts/ui/windows/confirm_window.gd" id="1_vrcfc"]
 
 [node name="Window" type="Window"]
 initial_position = 1
 size = Vector2i(510, 210)
 exclusive = true
 always_on_top = true
-script = ExtResource("1_xoi7l")
+script = ExtResource("1_vrcfc")
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchors_preset = 15

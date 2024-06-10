@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=8 format=3 uid="uid://dmdmhbhfstocv"]
 
 [ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
 [ext_resource type="Script" path="res://scenes/HSplit_Base.gd" id="1_lkwbo"]
+[ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="3_xdsuw"]
+[ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="4_snrbn"]
+[ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="5_quqh7"]
 
 [sub_resource type="Theme" id="Theme_d1udh"]
 default_font_size = 25
@@ -77,5 +80,19 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
+
+[node name="Node_Audio" type="Node" parent="."]
+
+[node name="Audio_Work" type="AudioStreamPlayer" parent="Node_Audio"]
+stream = ExtResource("3_xdsuw")
+bus = &"Work"
+
+[node name="Audio_Rest" type="AudioStreamPlayer" parent="Node_Audio"]
+stream = ExtResource("4_snrbn")
+bus = &"Rest"
+
+[node name="Audio_Long" type="AudioStreamPlayer" parent="Node_Audio"]
+stream = ExtResource("5_quqh7")
+bus = &"Long"
 
 [connection signal="toggled" from="HSplit_Base/VBoxContainer/Control/Check_Tools" to="HSplit_Base" method="_on_check_button_toggled"]

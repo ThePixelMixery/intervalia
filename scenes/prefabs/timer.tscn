@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c61uutjbw8lpq"]
 
-[ext_resource type="Script" path="res://scripts/pomodoro.gd" id="1_yqe1x"]
-[ext_resource type="Script" path="res://scripts/ui/pomo_ui.gd" id="2_idh2l"]
-[ext_resource type="Texture2D" uid="uid://b4yi5v15hu6f4" path="res://assets/image/stop-200xx.png" id="3_0ec83"]
-[ext_resource type="Texture2D" uid="uid://cl4d2s5jubnxs" path="res://assets/image/add-200xx.png" id="3_akw6q"]
-[ext_resource type="Texture2D" uid="uid://cwkrdnk5wgbqu" path="res://assets/image/play-200xx.png" id="3_kj1sq"]
+[ext_resource type="Script" path="res://scripts/prefabs/pomodoro.gd" id="1_k0yo6"]
+[ext_resource type="Script" path="res://scripts/prefabs/pomo_ui.gd" id="2_mluds"]
+[ext_resource type="Texture2D" uid="uid://cl4d2s5jubnxs" path="res://assets/image/add-200xx.png" id="3_rgpcp"]
+[ext_resource type="Texture2D" uid="uid://b4yi5v15hu6f4" path="res://assets/image/stop-200xx.png" id="4_aqhkp"]
+[ext_resource type="Texture2D" uid="uid://cwkrdnk5wgbqu" path="res://assets/image/play-200xx.png" id="5_og1x6"]
 
 [node name="Control_Timer" type="Control"]
 custom_minimum_size = Vector2(208, 270)
@@ -12,7 +12,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 208.0
 offset_bottom = 270.0
-script = ExtResource("1_yqe1x")
+script = ExtResource("1_k0yo6")
 
 [node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -28,7 +28,7 @@ grow_vertical = 2
 
 [node name="VBox_Pomo" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
-script = ExtResource("2_idh2l")
+script = ExtResource("2_mluds")
 
 [node name="HBox_Title" type="HBoxContainer" parent="Margin/VBox_Pomo"]
 custom_minimum_size = Vector2(0, 60)
@@ -37,7 +37,7 @@ layout_mode = 2
 [node name="Button_Add" type="Button" parent="Margin/VBox_Pomo/HBox_Title"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-icon = ExtResource("3_akw6q")
+icon = ExtResource("3_rgpcp")
 expand_icon = true
 
 [node name="Button_Title" type="Button" parent="Margin/VBox_Pomo/HBox_Title"]
@@ -121,7 +121,7 @@ layout_mode = 2
 [node name="Button_Stop" type="Button" parent="Margin/VBox_Pomo/HBox_Actions"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-icon = ExtResource("3_0ec83")
+icon = ExtResource("4_aqhkp")
 expand_icon = true
 
 [node name="Label_Rest" type="Label" parent="Margin/VBox_Pomo/HBox_Actions"]
@@ -152,7 +152,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 toggle_mode = true
-icon = ExtResource("3_kj1sq")
+icon = ExtResource("5_og1x6")
 expand_icon = true
 
 [node name="Timer" type="Timer" parent="."]

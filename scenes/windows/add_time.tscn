@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://qwwdujwyxse"]
 
-[ext_resource type="Script" path="res://scenes/add_time.gd" id="1_yi2lp"]
+[ext_resource type="Script" path="res://scripts/ui/windows/add_time.gd" id="1_3nrem"]
 
 [node name="Window" type="Window"]
 initial_position = 1
 size = Vector2i(180, 94)
-script = ExtResource("1_yi2lp")
+script = ExtResource("1_3nrem")
 
 [node name="Margin" type="MarginContainer" parent="."]
 anchors_preset = 15

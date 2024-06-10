@@ -19,16 +19,23 @@ var work: Array
 var pomo: int
 var rest: Array
 
+var start_work: String
+var start_rest: String
+var start_long: String
+
 var working: bool = true
 var running: bool
 var empty: bool
 var queue_stop: bool
+var audio_work
+var audio_rest
+var audio_long
 
 var pomo_data: Dictionary
 
 @onready var ui = $Margin/VBox_Pomo
 @onready var timer = $Timer
-@onready var add_window = preload("res://scenes/add_time.tscn")
+@onready var add_window = preload("res://scenes/windows/add_time.tscn")
 
 func _ready():
     default_pomo()
@@ -43,7 +50,6 @@ func pack_data():
     if dynamic:
         rest = [0,0]
         empty = true
-
     pomo_data = {
         title = title,
         dynamic = dynamic,
@@ -56,6 +62,9 @@ func pack_data():
         work = work,
         pomo = pomo,
         rest = rest,
+        audio_work = load("res://assets/sound/" + start_work + ".mp3"),
+        audio_rest = load("res://assets/sound/" + start_rest + ".mp3"),
+        audio_long = load("res://assets/sound/" + start_long + ".mp3")
     }
 
 func unpack_data(data:Dictionary):
@@ -79,13 +88,13 @@ func default_pomo():
     #base_work = 25
     base_rest = 15
     base_long = 30
-    base_pomo = 1
+    base_pomo = 4
     base_work = 5
     #work = [25,0]
     rest = [0,0]
     pomo = 0
     #rest = [0,0]
-    work = [0,3]
+    work = [5,0]
     selected.pomo_node = self
 
 func reset_variable(variable:String):
@@ -126,8 +135,22 @@ func _on_button_add_pressed():
 
 func add_work_minutes(minutes: int):
     toolbox.pront("minutes to add: " )
-####### HERE #######
-
+    var work_before_split: int = work[0] - minutes
+    var pomos_from_split: int = abs(minutes / base_work)
+    var minutes_post_split = work_before_split % base_work 
+    if work_before_split > 0:
+        work[0] = minutes_post_split
+        if dynamic:
+            add_to_rest(true, (abs(minutes_post_split))*60)
+    else:
+        for i in range(pomos_from_split):
+            rest[0] += base_rest
+            iterate_pomo()
+        if dynamic:
+            add_to_rest(true, (abs(minutes_post_split))*60)
+        work = [base_work+minutes_post_split, 0]
+    ui.update_work(work)
+        
 func run_timer():
     if running:
         toolbox.pront("starting timer")
@@ -198,11 +221,19 @@ func iterate_pomo():
         rest[0] += (base_long - base_rest)
         pomo = 0
 
-func add_to_rest():
+func add_to_rest(bulk: bool = false, amount: int = 0):
     empty = false
-    rest[1] += 1 * ratio
-    if rest[1] > 59:
-        rest[0] += 1
-        rest[1] -= 59
+    if bulk:
+        var processed: int = amount * ratio
+        rest[0] += processed / 60
+        rest[1] += processed % 60
+        
+    else:
+        rest[1] += 1 * ratio
+        if rest[1] > 59:
+            rest[0] += 1
+            rest[1] -= 59
+    
+        
     ui.update_rest(rest)
 

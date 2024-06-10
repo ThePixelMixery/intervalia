@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-var editor = preload("res://scenes/edit_window.tscn")
+var editor = preload("res://scenes/windows/edit_window.tscn")
 
 
 func _ready():
