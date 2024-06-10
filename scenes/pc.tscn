@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=9 format=3 uid="uid://dmdmhbhfstocv"]
 
 [ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
-[ext_resource type="Script" path="res://scenes/HSplit_Base.gd" id="1_lkwbo"]
+[ext_resource type="Script" path="res://scripts/ui/base_menu.gd" id="1_lkwbo"]
+[ext_resource type="Texture2D" uid="uid://cbt27map6s2yl" path="res://assets/image/unmute-200xx.png" id="2_vcbma"]
 [ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="3_xdsuw"]
 [ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="4_snrbn"]
 [ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="5_quqh7"]
@@ -39,22 +40,32 @@ script = ExtResource("1_lkwbo")
 [node name="Panel" type="Panel" parent="HSplit_Base"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HSplit_Base"]
+[node name="VBox_Main" type="VBoxContainer" parent="HSplit_Base"]
 layout_mode = 2
 
-[node name="HBox_Menu" type="HBoxContainer" parent="HSplit_Base/VBoxContainer"]
+[node name="HBox_Menu" type="HBoxContainer" parent="HSplit_Base/VBox_Main"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 alignment = 1
 
-[node name="Button_Focus" type="Button" parent="HSplit_Base/VBoxContainer/HBox_Menu"]
+[node name="Button_Focus" type="Button" parent="HSplit_Base/VBox_Main/HBox_Menu"]
+visible = false
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
-text = "Focus Menu"
+text = "Focus 
+Menu"
 
-[node name="Control" type="Control" parent="HSplit_Base/VBoxContainer"]
+[node name="Button_Mute" type="Button" parent="HSplit_Base/VBox_Main/HBox_Menu"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("2_vcbma")
+expand_icon = true
+
+[node name="Control" type="Control" parent="HSplit_Base/VBox_Main"]
 layout_mode = 2
 
-[node name="Check_Tools" type="CheckButton" parent="HSplit_Base/VBoxContainer/Control"]
+[node name="Check_Tools" type="CheckButton" parent="HSplit_Base/VBox_Main/Control"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 1
 anchors_preset = 9
@@ -65,11 +76,11 @@ grow_vertical = 2
 text = "
 "
 
-[node name="Control_Main" type="Control" parent="HSplit_Base/VBoxContainer"]
+[node name="Control_Main" type="Control" parent="HSplit_Base/VBox_Main"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control_Focus" parent="HSplit_Base/VBoxContainer/Control_Main" instance=ExtResource("1_fjvi8")]
+[node name="Control_Focus" parent="HSplit_Base/VBox_Main/Control_Main" instance=ExtResource("1_fjvi8")]
 layout_mode = 1
 
 [node name="VBox_Notifications" type="VBoxContainer" parent="."]
@@ -83,6 +94,12 @@ grow_vertical = 0
 
 [node name="Node_Audio" type="Node" parent="."]
 
+[node name="Audio_Working" type="AudioStreamPlayer" parent="Node_Audio"]
+bus = &"Work"
+
+[node name="Audio_Resting" type="AudioStreamPlayer" parent="Node_Audio"]
+bus = &"Work"
+
 [node name="Audio_Work" type="AudioStreamPlayer" parent="Node_Audio"]
 stream = ExtResource("3_xdsuw")
 bus = &"Work"
@@ -95,4 +112,5 @@ bus = &"Rest"
 stream = ExtResource("5_quqh7")
 bus = &"Long"
 
-[connection signal="toggled" from="HSplit_Base/VBoxContainer/Control/Check_Tools" to="HSplit_Base" method="_on_check_button_toggled"]
+[connection signal="toggled" from="HSplit_Base/VBox_Main/HBox_Menu/Button_Mute" to="HSplit_Base" method="_on_button_meeting_toggled"]
+[connection signal="toggled" from="HSplit_Base/VBox_Main/Control/Check_Tools" to="HSplit_Base" method="_on_check_button_toggled"]

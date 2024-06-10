@@ -56,6 +56,22 @@ grow_vertical = 0
 icon = ExtResource("1_sqkxs")
 expand_icon = true
 
+[node name="Button2" type="Button" parent="Control_Buffer/VBox_Focus/Control_BufferTop"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("1_sqkxs")
+expand_icon = true
+
 [node name="TexProg_Pomo" type="TextureProgressBar" parent="Control_Buffer/VBox_Focus"]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
@@ -132,3 +148,4 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="Control_Buffer/VBox_Focus/Control_BufferTop/Button" to="Control_Buffer/VBox_Focus" method="_on_button_pressed"]
+[connection signal="pressed" from="Control_Buffer/VBox_Focus/Control_BufferTop/Button2" to="Control_Buffer/VBox_Focus" method="_on_button_pressed"]

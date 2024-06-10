@@ -5,9 +5,10 @@ func signal_buffer():
 
 var title: String
 
+var auto_rest: bool
+var mute: bool
 var dynamic: bool
 var auto_work: bool
-var auto_rest: bool
 
 var base_rest: int
 var base_long: int
@@ -19,17 +20,18 @@ var work: Array
 var pomo: int
 var rest: Array
 
-var start_work: String
-var start_rest: String
-var start_long: String
+var sound_work: String
+var sound_rest: String
+var sound_long: String
 
 var working: bool = true
 var running: bool
 var empty: bool
 var queue_stop: bool
-var audio_work
-var audio_rest
-var audio_long
+var mute_bank: Array = [0,0]
+var audio_work: Resource
+var audio_rest: Resource
+var audio_long: Resource
 
 var pomo_data: Dictionary
 
@@ -46,15 +48,20 @@ func populate():
     ui.populate_ui(pomo_data)
 
 func pack_data():
+    audio_work = load("res://assets/sound/work/" + sound_work + ".mp3")
+    audio_rest = load("res://assets/sound/rest/" + sound_rest + ".mp3")
+    audio_long = load("res://assets/sound/long/" + sound_long + ".mp3")
+
     ratio = float(base_rest)/float(base_work)
     if dynamic:
         rest = [0,0]
         empty = true
     pomo_data = {
         title = title,
-        dynamic = dynamic,
-        auto_work = auto_work,
         auto_rest = auto_rest,
+        dynamic = dynamic,
+        mute = mute,
+        auto_work = auto_work,
         base_rest = base_rest,
         base_long = base_long,
         base_pomo = base_pomo,
@@ -62,9 +69,9 @@ func pack_data():
         work = work,
         pomo = pomo,
         rest = rest,
-        audio_work = load("res://assets/sound/" + start_work + ".mp3"),
-        audio_rest = load("res://assets/sound/" + start_rest + ".mp3"),
-        audio_long = load("res://assets/sound/" + start_long + ".mp3")
+        audio_work = audio_work,
+        audio_rest = audio_rest,
+        audio_long = audio_long
     }
 
 func unpack_data(data:Dictionary):
@@ -79,22 +86,29 @@ func unpack_data(data:Dictionary):
     rest = data["rest"]
     pomo = data["pomo"]
     work = data["work"]
+    sound_work = data["sound_work"]
+    sound_rest = data["sound_rest"]
+    sound_long = data["sound_long"]
     
 func default_pomo():
     title = "Default"
     dynamic = true
-    auto_work = true
     auto_rest = true
+    mute = true
+    auto_work = true
     #base_work = 25
-    base_rest = 15
+    base_rest = 2
     base_long = 30
-    base_pomo = 4
-    base_work = 5
+    base_pomo = 1
+    base_work = 1
     #work = [25,0]
     rest = [0,0]
     pomo = 0
     #rest = [0,0]
-    work = [5,0]
+    work = [0,5]
+    sound_work = "work-01"
+    sound_rest = "rest-01"
+    sound_long = "long-01"
     selected.pomo_node = self
 
 func reset_variable(variable:String):
@@ -130,15 +144,18 @@ func _on_check_work_toggled(toggled_on:bool):
 
 func _on_button_add_pressed():
     var add_instance = add_window.instantiate()
-    add_instance.connect("add_minutes", add_work_minutes)
+    add_instance.connect("add_time", add_work_time)
     add_child(add_instance)
 
-func add_work_minutes(minutes: int):
+func add_work_time(time:Array):
     toolbox.pront("minutes to add: " )
-    var work_before_split: int = work[0] - minutes
-    var pomos_from_split: int = abs(minutes / base_work)
-    var minutes_post_split = work_before_split % base_work 
-    if work_before_split > 0:
+    if (work[1]+time[1]) > 59:
+        time[0] += 1
+        time[1] = 59 - time[1]
+    var work_minutes_before_split: int = work[0] - time[0]
+    var pomos_from_split: int = abs(time[0] / base_work)
+    var minutes_post_split = work_minutes_before_split % base_work 
+    if work_minutes_before_split > 0:
         work[0] = minutes_post_split
         if dynamic:
             add_to_rest(true, (abs(minutes_post_split))*60)
@@ -160,6 +177,8 @@ func run_timer():
         timer.stop()
     
 func _on_timer_timeout():
+    if toolbox.mute:
+        add_to_mute()
     if working:
         toolbox.pront("doing work time updates")
         running_work()
@@ -169,6 +188,15 @@ func _on_timer_timeout():
     else:
         toolbox.pront("doing rest time updates")
         running_rest()
+
+func add_to_mute():
+    mute_bank[1] += 1
+    if dynamic:
+        add_to_rest()
+    if mute_bank[1] > 59:
+        mute_bank[0] += 1
+        mute_bank[1] = 0
+    ui.update_work(mute_bank)
 
 func running_work():
     work[1] -= 1
@@ -193,7 +221,6 @@ func running_rest():
 
 func timeout():
     if working:
-        toolbox.pront ("timed out working")
         working = false if auto_rest else true
         running = true if auto_rest else false
         iterate_pomo()
@@ -204,8 +231,7 @@ func timeout():
     else:
         if not dynamic:
             rest[0] = base_rest
-        toolbox.pront ("timed out resting")
-        toolbox.pront("rest time is empty")
+        toolbox.play_sound(3, audio_work)
         working = true if auto_work else false
         running = true if auto_work else false
         if queue_stop:
@@ -220,12 +246,16 @@ func iterate_pomo():
     if pomo > base_pomo:
         rest[0] += (base_long - base_rest)
         pomo = 0
+        toolbox.play_sound(4, audio_long)
+    else:
+        toolbox.play_sound(3, audio_rest)
+
 
 func add_to_rest(bulk: bool = false, amount: int = 0):
     empty = false
     if bulk:
-        var processed: int = amount * ratio
-        rest[0] += processed / 60
+        var processed: int = int(amount * ratio)
+        rest[0] += int(processed / 60)
         rest[1] += processed % 60
         
     else:

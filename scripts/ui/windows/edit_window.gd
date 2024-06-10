@@ -7,14 +7,16 @@ extends VBoxContainer
 @onready var rest: SpinBox = $Grid_Number/SpinBox_Rest
 @onready var pomo: SpinBox = $Grid_Number/SpinBox_Pomo
 @onready var long: SpinBox = $Grid_Number/SpinBox_Long
-@onready var dynamic: CheckButton = $Grid_Check/Check_Dynamic
-@onready var autowork: CheckButton = $Grid_Check/Check_AutoWork
 @onready var autorest: CheckButton = $Grid_Check/Check_AutoRest
+@onready var dynamic: CheckButton = $Grid_Check/Check_Dynamic
+@onready var mute: CheckButton = $Grid_Check/Check_Mute
+@onready var autowork: CheckButton = $Grid_Check/Check_AutoWork
 
 @onready var display_title: Button = $VBox_Pomo/HBox_Title/Button_Title
-@onready var display_dynamic: Button = $VBox_Pomo/HBox_Settings/Button_Dynamic
-@onready var display_autoWork: Button = $VBox_Pomo/HBox_Settings/Button_Work
 @onready var display_autoRest: Button = $VBox_Pomo/HBox_Settings/Button_Rest
+@onready var display_dynamic: Button = $VBox_Pomo/HBox_Settings/Button_Dynamic
+@onready var display_mute: Button = $VBox_Pomo/HBox_Settings/Button_Mute
+@onready var display_autoWork: Button = $VBox_Pomo/HBox_Settings/Button_Work
 @onready var display_work: Label = $VBox_Pomo/HBox_Details/Label_Work
 @onready var display_rest: Label = $VBox_Pomo/HBox_Details/Label_Rest
 @onready var display_pomo: Label = $VBox_Pomo/HBox_Details/Label_Pomo
@@ -29,13 +31,15 @@ func _ready():
 	rest.value = pom.base_rest
 	pomo.value = pom.base_pomo
 	long.value = pom.base_long
-	dynamic.button_pressed = pom.dynamic
-	autowork.button_pressed = pom.auto_work
 	autorest.button_pressed = pom.auto_rest
+	dynamic.button_pressed = pom.dynamic
+	mute.button_pressed = pom.mute
+	autowork.button_pressed = pom.auto_work
 	display_title.text = pom.title
-	display_dynamic.disabled = not pom.dynamic
-	display_autoWork.disabled = not pom.auto_work
 	display_autoRest.disabled = not pom.auto_rest
+	display_dynamic.disabled = not pom.dynamic
+	display_mute.disabled = not pom.mute
+	display_autoWork.disabled = not pom.auto_work
 	toolbox.update_text(display_work, 0, pom.base_work)
 	toolbox.update_text(display_rest, 0, pom.base_rest)
 	toolbox.update_text(display_pomo, 1, 0, pom.base_pomo)
@@ -98,3 +102,7 @@ func _on_check_auto_work_toggled(toggled_on:bool):
 func _on_check_auto_rest_toggled(toggled_on:bool):
 	pom.auto_rest = toggled_on
 	display_autoRest.disabled = not toggled_on
+
+func _on_check_mute_toggled(toggled_on:bool):
+	pom.mute = toggled_on
+	display_mute.disabled = not toggled_on
