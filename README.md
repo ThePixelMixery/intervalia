@@ -1,2 +1,2 @@
-# tomato-vine
+# Intervalia
  A dynamic pomodoro timer
