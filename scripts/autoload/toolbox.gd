@@ -4,6 +4,7 @@ extends Node
 @onready var audio: Node = get_node("/root/Control_Buffer/Node_Audio")
 
 var mute: bool
+var testing: bool
 var max_notif: int = 10
 
 func update_text(node: Node, type: int, num1: int, num2: int = 0):
@@ -18,11 +19,12 @@ func update_text(node: Node, type: int, num1: int, num2: int = 0):
 			node.text = '|%02d:%02d|' % [num1, num2]
 
 func pront(text: String):
-	var new_label = Label.new()
-	new_label.text = text
-	printer.add_child(new_label)
-	while printer.get_child_count() > max_notif:
-		printer.get_child(0).free()
+	if testing:
+		var new_label = Label.new()
+		new_label.text = text
+		printer.add_child(new_label)
+		while printer.get_child_count() > max_notif:
+			printer.get_child(0).free()
 
 func play_sound(selection: int, sound: Resource, play: bool = true):
 	if not mute:
