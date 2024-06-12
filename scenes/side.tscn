@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcvk0ubns5mqb"]
+
+[ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="1_h8tx4"]
+
+[node name="Control_Side" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1420.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox_Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox_Menu" parent="VBox_Main" instance=ExtResource("1_h8tx4")]
+layout_mode = 2
+
+[node name="Control_Main" type="Control" parent="VBox_Main"]
+layout_mode = 2
+size_flags_vertical = 3

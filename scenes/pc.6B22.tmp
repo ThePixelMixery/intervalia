@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=8 format=3 uid="uid://dmdmhbhfstocv"]
 
 [ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
 [ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="2_uf20b"]
@@ -7,41 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="4_snrbn"]
 [ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="5_quqh7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02q8c"]
-
 [sub_resource type="Theme" id="Theme_d1udh"]
 default_font_size = 25
-Button/colors/font_focus_color = Color(0, 0, 0, 1)
-Button/colors/icon_focus_color = Color(0, 0, 0, 1)
-Button/styles/focus = SubResource("StyleBoxEmpty_02q8c")
-CheckBox/colors/font_focus_color = Color(0, 0, 0, 1)
-CheckBox/styles/focus = null
-CheckButton/colors/font_focus_color = Color(0, 0, 0, 1)
-CheckButton/styles/focus = null
-CodeEdit/styles/focus = null
-ColorPickerButton/colors/font_focus_color = Color(0, 0, 0, 1)
-ColorPickerButton/styles/focus = null
-HScrollBar/styles/scroll_focus = null
-ItemList/styles/cursor_unfocused = null
-ItemList/styles/focus = null
-ItemList/styles/selected_focus = null
-LineEdit/styles/focus = null
-LinkButton/colors/font_focus_color = Color(0, 0, 0, 1)
-LinkButton/styles/focus = null
-MenuBar/colors/font_focus_color = Color(0, 0, 0, 1)
-MenuButton/colors/font_focus_color = Color(0, 0, 0, 1)
-MenuButton/styles/focus = null
-OptionButton/colors/font_focus_color = Color(0, 0, 0, 1)
-OptionButton/styles/focus = null
-RichTextLabel/styles/focus = null
-TabBar/styles/tab_focus = null
-TabContainer/styles/tab_focus = null
-TextEdit/styles/focus = null
-Tree/styles/cursor_unfocused = null
-Tree/styles/focus = null
-Tree/styles/selected_focus = null
-VScrollBar/styles/scroll_focus = null
-Window/styles/embedded_unfocused_border = null
 
 [node name="Control_Buffer" type="Control"]
 layout_mode = 3
@@ -61,40 +28,6 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = -10.0
 offset_bottom = -10.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBox_Main" type="VBoxContainer" parent="Margin"]
-layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="Focus" parent="Margin/VBox_Main" instance=ExtResource("1_fjvi8")]
-custom_minimum_size = Vector2(480, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TabContainer" type="TabContainer" parent="Margin/VBox_Main"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-tab_alignment = 1
-
-[node name="Control" type="Control" parent="Margin/VBox_Main"]
-custom_minimum_size = Vector2(0, 270)
-layout_mode = 2
-
-[node name="Control_Timer" parent="Margin/VBox_Main/Control" instance=ExtResource("4_2q0sj")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -135.0
-offset_right = 250.0
-offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -136,6 +69,40 @@ size_flags_horizontal = 3
 [node name="Panel_Timers" type="Panel" parent="Margin/HBox_Main"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+
+[node name="VBox_Main" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Focus" parent="Margin/VBox_Main" instance=ExtResource("1_fjvi8")]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TabContainer" type="TabContainer" parent="Margin/VBox_Main"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+
+[node name="Control" type="Control" parent="Margin/VBox_Main"]
+custom_minimum_size = Vector2(0, 270)
+layout_mode = 2
+
+[node name="Control_Timer" parent="Margin/VBox_Main/Control" instance=ExtResource("4_2q0sj")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -135.0
+offset_right = 250.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBox_Notifications" type="VBoxContainer" parent="."]
 layout_mode = 1

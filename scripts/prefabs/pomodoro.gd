@@ -254,7 +254,7 @@ func timeout():
 
 func iterate_pomo():
 	pomo += 1
-	if pomo > base_pomo:
+	if pomo == base_pomo:
 		rest[0] += (base_long - base_rest)
 		pomo = 0
 		toolbox.play_sound(4, audio_long)
