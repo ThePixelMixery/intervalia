@@ -33,8 +33,6 @@ var audio_work: Resource
 var audio_rest: Resource
 var audio_long: Resource
 
-
-
 var pomo_data: Dictionary
 
 @onready var ui = $Margin/VBox_Pomo
@@ -42,7 +40,6 @@ var pomo_data: Dictionary
 @onready var add_window = preload("res://scenes/windows/add_time.tscn")
 
 func _ready():
-	
 	default_pomo()
 	populate()
 
@@ -110,7 +107,8 @@ func default_pomo():
 	sound_work = "work-01"
 	sound_rest = "rest-01"
 	sound_long = "long-01"
-	selected.pomo_node = self
+	global.selected = self
+	signals.select_set.emit()
 
 func reset_variable(variable:String):
 	match variable:
@@ -120,9 +118,10 @@ func reset_variable(variable:String):
 			pomo = 0
 			running = false
 	populate()
+	signals.select_set.emit()
 
 func _on_button_stop_pressed():
-	toolbox.pront("stopped")
+	global.pront("stopped")
 	reset_variable("all")
 	running = false
 	timer.stop()
@@ -171,28 +170,30 @@ func add_work_time(time:Array):
 		
 func run_timer():
 	if running:
-		toolbox.pront("starting timer")
+		global.pront("starting timer")
 		timer.start()
 	else:
-		toolbox.pront("stoping timer")
+		global.pront("stoping timer")
 		timer.stop()
 	
 func _on_timer_timeout():
-	if toolbox.mute == false and spill == true:
+	if global.mute == false and spill == true:
 		working = false
 		spill = false
 		work = [base_work, 0]
 		ui.update_work(work)
 		update_controls()
 	if working:
-		toolbox.pront("doing work time updates")
+		global.pront("doing work time updates")
 		running_work()
 	elif empty and not working:
 		timer.stop()
 		ui.play_button(running)
 	else:
-		toolbox.pront("doing rest time updates")
+		global.pront("doing rest time updates")
 		running_rest()
+	signals.update_focus.emit()
+	
 
 func running_work():
 	if dynamic:
@@ -230,7 +231,7 @@ func running_rest():
 func timeout():
 	if working:
 		iterate_pomo()
-		if toolbox.mute:
+		if global.mute:
 			spill = true
 		else:
 			work[0] = base_work
@@ -242,7 +243,7 @@ func timeout():
 	else:
 		if not dynamic:
 			rest[0] = base_rest
-		toolbox.play_sound(3, audio_work)
+		global.play_sound(3, audio_work)
 		working = true if auto_work else false
 		running = true if auto_work else false
 		if queue_stop:
@@ -257,9 +258,9 @@ func iterate_pomo():
 	if pomo == base_pomo:
 		rest[0] += (base_long - base_rest)
 		pomo = 0
-		toolbox.play_sound(4, audio_long)
+		global.play_sound(4, audio_long)
 	else:
-		toolbox.play_sound(3, audio_rest)
+		global.play_sound(3, audio_rest)
 	ui.update_rest(rest)
 	ui.update_pomos(pomo)
 

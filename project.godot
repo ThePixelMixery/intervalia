@@ -21,9 +21,8 @@ buses/default_bus_layout="res://assets/sound/Audio_Bus.tres"
 
 [autoload]
 
+global="*res://scripts/autoload/global.gd"
 signals="*res://scripts/autoload/signal_bus.gd"
-selected="*res://scripts/autoload/selected.gd"
-toolbox="*res://scripts/autoload/toolbox.gd"
 settings="*res://scripts/autoload/settings.gd"
 
 [display]

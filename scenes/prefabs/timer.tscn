@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cwkrdnk5wgbqu" path="res://assets/image/play-200xx.png" id="5_og1x6"]
 
 [node name="Control_Timer" type="Control"]
-custom_minimum_size = Vector2(208, 270)
+custom_minimum_size = Vector2(208, 258)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 208.0
-offset_bottom = 270.0
+offset_bottom = 258.0
 script = ExtResource("1_k0yo6")
 
 [node name="Margin" type="MarginContainer" parent="."]
@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 offset_left = 5.0
 offset_top = 5.0
 offset_right = -5.0
-offset_bottom = -7.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 

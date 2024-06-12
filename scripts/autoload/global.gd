@@ -3,6 +3,7 @@ extends Node
 @onready var printer: VBoxContainer = get_node("/root/Control_Buffer/VBox_Notifications")
 @onready var audio: Node = get_node("/root/Control_Buffer/Node_Audio")
 
+var selected: Control
 var mute: bool
 var testing: bool
 var max_notif: int = 10

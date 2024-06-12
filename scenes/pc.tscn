@@ -1,47 +1,78 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=29 format=3 uid="uid://dmdmhbhfstocv"]
 
 [ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
-[ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="2_uf20b"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/main_menu.tscn" id="2_uf20b"]
 [ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="3_xdsuw"]
 [ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/prefabs/timer.tscn" id="4_2q0sj"]
 [ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="4_snrbn"]
 [ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="5_quqh7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02q8c"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p6dxv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_savda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ynhj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fmrmg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqken"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grxy3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ev7fy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baey3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sxe27"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3afv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7825"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vp2x7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xphvk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2re0t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkek0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms6b3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w5rj1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kmvo4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v36gt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh2fm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_heye8"]
 
 [sub_resource type="Theme" id="Theme_d1udh"]
 default_font_size = 25
-Button/colors/font_focus_color = Color(0, 0, 0, 1)
-Button/colors/icon_focus_color = Color(0, 0, 0, 1)
-Button/styles/focus = SubResource("StyleBoxEmpty_02q8c")
-CheckBox/colors/font_focus_color = Color(0, 0, 0, 1)
-CheckBox/styles/focus = null
-CheckButton/colors/font_focus_color = Color(0, 0, 0, 1)
-CheckButton/styles/focus = null
-CodeEdit/styles/focus = null
-ColorPickerButton/colors/font_focus_color = Color(0, 0, 0, 1)
-ColorPickerButton/styles/focus = null
-HScrollBar/styles/scroll_focus = null
-ItemList/styles/cursor_unfocused = null
-ItemList/styles/focus = null
+Button/styles/focus = SubResource("StyleBoxEmpty_p6dxv")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_savda")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_7ynhj")
+CodeEdit/styles/focus = SubResource("StyleBoxEmpty_fmrmg")
+ColorPickerButton/styles/focus = SubResource("StyleBoxEmpty_tqken")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_grxy3")
+ItemList/styles/cursor_unfocused = SubResource("StyleBoxEmpty_ev7fy")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_baey3")
 ItemList/styles/selected_focus = null
-LineEdit/styles/focus = null
-LinkButton/colors/font_focus_color = Color(0, 0, 0, 1)
-LinkButton/styles/focus = null
-MenuBar/colors/font_focus_color = Color(0, 0, 0, 1)
-MenuButton/colors/font_focus_color = Color(0, 0, 0, 1)
-MenuButton/styles/focus = null
-OptionButton/colors/font_focus_color = Color(0, 0, 0, 1)
-OptionButton/styles/focus = null
-RichTextLabel/styles/focus = null
-TabBar/styles/tab_focus = null
-TabContainer/styles/tab_focus = null
-TextEdit/styles/focus = null
-Tree/styles/cursor_unfocused = null
-Tree/styles/focus = null
-Tree/styles/selected_focus = null
-VScrollBar/styles/scroll_focus = null
-Window/styles/embedded_unfocused_border = null
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_sxe27")
+LinkButton/styles/focus = SubResource("StyleBoxEmpty_p3afv")
+MenuButton/styles/focus = SubResource("StyleBoxEmpty_o7825")
+OptionButton/styles/focus = SubResource("StyleBoxEmpty_vp2x7")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_xphvk")
+TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_2re0t")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_tkek0")
+TextEdit/styles/focus = SubResource("StyleBoxEmpty_ms6b3")
+Tree/styles/cursor_unfocused = SubResource("StyleBoxEmpty_w5rj1")
+Tree/styles/focus = SubResource("StyleBoxEmpty_kmvo4")
+Tree/styles/selected_focus = SubResource("StyleBoxEmpty_v36gt")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_eh2fm")
+Window/styles/embedded_unfocused_border = SubResource("StyleBoxEmpty_heye8")
 
 [node name="Control_Buffer" type="Control"]
 layout_mode = 3
@@ -64,10 +95,68 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HBox_Main" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Panel_Tools" type="Panel" parent="Margin/HBox_Main"]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Control_Centre Guard" type="Control" parent="Margin/HBox_Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="HBoxTools" type="HBoxContainer" parent="Margin/HBox_Main/Control_Centre Guard"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="Check_Tools" type="CheckButton" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "
+"
+
+[node name="Control_ToolsBuffer" type="Control" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control_OtherBuffer" type="Control" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Check_Timers" type="CheckButton" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Panel_Timers" type="Panel" parent="Margin/HBox_Main"]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/HBox_Main/Panel_Timers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/HBox_Main/Panel_Timers/ScrollContainer"]
+custom_minimum_size = Vector2(500, 2000)
+layout_mode = 2
+
 [node name="VBox_Main" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
+
+[node name="HBox_Menu" parent="Margin/VBox_Main" instance=ExtResource("2_uf20b")]
+layout_mode = 2
 
 [node name="Focus" parent="Margin/VBox_Main" instance=ExtResource("1_fjvi8")]
 custom_minimum_size = Vector2(480, 0)
@@ -98,45 +187,6 @@ offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBox_Main" type="HBoxContainer" parent="Margin"]
-layout_mode = 2
-
-[node name="Panel_Tools" type="Panel" parent="Margin/HBox_Main"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-
-[node name="Control_Centre Guard" type="Control" parent="Margin/HBox_Main"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxTools" type="HBoxContainer" parent="Margin/HBox_Main/Control_Centre Guard"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 80.0
-grow_horizontal = 2
-
-[node name="Check_Tools" type="CheckButton" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-text = "
-"
-
-[node name="Control_ToolsBuffer" type="Control" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBox_Menu" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools" instance=ExtResource("2_uf20b")]
-layout_mode = 2
-
-[node name="Control_OtherBuffer" type="Control" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Panel_Timers" type="Panel" parent="Margin/HBox_Main"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-
 [node name="VBox_Notifications" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -166,9 +216,7 @@ bus = &"Rest"
 stream = ExtResource("5_quqh7")
 bus = &"Long"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[connection signal="toggled" from="Margin/HBox_Main/Control_Centre Guard/HBoxTools/Check_Tools" to="Margin/VBox_Main/HBox_Menu" method="_on_check_tools_toggled"]
+[connection signal="toggled" from="Margin/HBox_Main/Control_Centre Guard/HBoxTools/Check_Timers" to="Margin/VBox_Main/HBox_Menu" method="_on_check_timers_toggled"]
 
-[connection signal="toggled" from="Margin/HBox_Main/Control_Centre Guard/HBoxTools/Check_Tools" to="Margin/HBox_Main/Control_Centre Guard/HBoxTools/HBox_Menu" method="_on_check_tools_toggled"]
+[editable path="Margin/VBox_Main/Control/Control_Timer"]

@@ -22,7 +22,7 @@ extends VBoxContainer
 @onready var display_pomo: Label = $VBox_Pomo/HBox_Details/Label_Pomo
 @onready var display_long: Label = $VBox_Pomo/HBox_Details/Label_Long
 
-var pom: Node = selected.pomo_node
+var pom: Node = global.pomo_node
 
 func _ready():
 	window.title = "Editing %s" % pom.title
@@ -40,10 +40,10 @@ func _ready():
 	display_dynamic.disabled = not pom.dynamic
 	display_mute.disabled = not pom.mute
 	display_autoWork.disabled = not pom.auto_work
-	toolbox.update_text(display_work, 0, pom.base_work)
-	toolbox.update_text(display_rest, 0, pom.base_rest)
-	toolbox.update_text(display_pomo, 1, 0, pom.base_pomo)
-	toolbox.update_text(display_long, 0, pom.base_long)
+	global.update_text(display_work, 0, pom.base_work)
+	global.update_text(display_rest, 0, pom.base_rest)
+	global.update_text(display_pomo, 1, 0, pom.base_pomo)
+	global.update_text(display_long, 0, pom.base_long)
 
 func close():
 	window.queue_free()
@@ -78,18 +78,18 @@ func _on_text_edit_title_text_changed():
 	display_title.text = title.text
 
 func _on_spin_box_work_value_changed(value:int):
-	toolbox.update_text(display_work, 0, value)
+	global.update_text(display_work, 0, value)
 
 func _on_spin_box_rest_value_changed(value:int):
-	toolbox.update_text(display_rest, 0, value)
+	global.update_text(display_rest, 0, value)
 
 func _on_spin_box_pomo_value_changed(value:int):
 	pom.base_pomo = value
-	toolbox.update_text(display_pomo, 1, 0, value)
+	global.update_text(display_pomo, 1, 0, value)
 
 func _on_spin_box_long_value_changed(value:int):
 	pom.base_long = value
-	toolbox.update_text(display_long, 0, value)
+	global.update_text(display_long, 0, value)
 
 func _on_check_dynamic_toggled(toggled_on:bool):
 	pom.dynamic = toggled_on
