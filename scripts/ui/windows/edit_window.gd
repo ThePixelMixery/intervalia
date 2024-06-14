@@ -22,7 +22,7 @@ extends VBoxContainer
 @onready var display_pomo: Label = $VBox_Pomo/HBox_Details/Label_Pomo
 @onready var display_long: Label = $VBox_Pomo/HBox_Details/Label_Long
 
-var pom: Node = global.pomo_node
+var pom: Node = global.selected
 
 func _ready():
 	window.title = "Editing %s" % pom.title

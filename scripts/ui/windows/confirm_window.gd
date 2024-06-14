@@ -41,7 +41,7 @@ func close():
 	queue_free()
 
 func confirmed():
-	global.pomo_node._on_button_stop_pressed()
+	global.selected._on_button_stop_pressed()
 	parent_node.add_child(unpacked_instance)
 	close()
 
@@ -61,14 +61,14 @@ func _on_close_requested():
 func _on_button_other_pressed():
 	match type:
 		"edit_pomo":
-			if global.pomo_node.dynamic == true and global.pomo_node.empty != true:
-				global.pomo_node.queue_stop = true 
-				if global.pomo_node.working:
-					global.pomo_node.working = false
-					global.pomo_node.ui.switch_button(false, false)
-				if global.pomo_node.running == false:
-					global.pomo_node._on_button_play_toggled(true)
-				global.pomo_node.working = false
+			if global.selected.dynamic == true and global.selected.empty != true:
+				global.selected.queue_stop = true 
+				if global.selected.working:
+					global.selected.working = false
+					global.selected.ui.switch_button(false, false)
+				if global.selected.running == false:
+					global.selected._on_button_play_toggled(true)
+				global.selected.working = false
 			else:
 				confirmed()
 	close()

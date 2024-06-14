@@ -55,6 +55,6 @@ func play_button(running: bool):
 	play.icon = pause_image if play.button_pressed else play_image
 	
 func switch_button(working: bool, empty:bool):
-	signals.select_set.emit()
+	signals.update_focus.emit(true)
 	on.button_pressed = true if working else false
 	play.disabled = true if empty and not working else false 

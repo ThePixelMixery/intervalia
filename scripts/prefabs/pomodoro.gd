@@ -118,7 +118,7 @@ func reset_variable(variable:String):
 			pomo = 0
 			running = false
 	populate()
-	signals.select_set.emit()
+	signals.update_focus.emit(true)
 
 func _on_button_stop_pressed():
 	global.pront("stopped")
@@ -145,8 +145,14 @@ func _on_check_work_toggled(toggled_on:bool):
 
 func _on_button_add_pressed():
 	var add_instance = add_window.instantiate()
-	add_instance.connect("add_minutes", add_work_time)
+	add_instance.connect("add_minutes", add_time)
 	add_child(add_instance)
+
+func add_time(to_work: bool, time: Array):
+	if to_work:
+		add_work_time(time)
+	else:
+		add_to_rest(true, 60 * -time[0])
 
 func add_work_time(time:Array):
 	if (work[1]+time[1]) > 59:

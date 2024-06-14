@@ -9,6 +9,7 @@ func _ready():
 
 func _on_check_mute_toggled(toggled_on:bool):
 	global.mute = toggled_on
+	signals.update_focus.emit(true)
 
 func open_editor():
 	global.pomo_node._on_button_stop_pressed()

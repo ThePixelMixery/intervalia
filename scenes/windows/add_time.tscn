@@ -4,7 +4,7 @@
 
 [node name="Window" type="Window"]
 initial_position = 1
-size = Vector2i(180, 94)
+size = Vector2i(300, 148)
 script = ExtResource("1_1w8ni")
 
 [node name="Margin" type="MarginContainer" parent="."]
@@ -28,6 +28,12 @@ max_value = 90.0
 alignment = 1
 suffix = "Minutes"
 
+[node name="CheckButton" type="CheckButton" parent="Margin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+button_pressed = true
+text = "Add to work time"
+
 [node name="HBox_Actions" type="HBoxContainer" parent="Margin/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -44,5 +50,6 @@ text = "Accept"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="value_changed" from="Margin/VBoxContainer/SpinBox_Minutes" to="." method="_on_spin_box_minutes_value_changed"]
+[connection signal="toggled" from="Margin/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="Margin/VBoxContainer/HBox_Actions/Button_Cancel" to="." method="_on_button_cancel_pressed"]
 [connection signal="pressed" from="Margin/VBoxContainer/HBox_Actions/Button_Accept" to="." method="_on_button_accept_pressed"]
