@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c64unnd0sbjg3"]
 
-[ext_resource type="Script" path="res://scripts/ui/windows/focus_window.gd" id="1_2bkro"]
+[ext_resource type="Script" path="res://scripts/ui/mode/focus_window.gd" id="1_fx25u"]
 [ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/prefabs/timer.tscn" id="4_5b7ey"]
 
 [node name="Control_Focus" type="Control"]
@@ -33,17 +33,16 @@ offset_right = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-script = ExtResource("1_2bkro")
+script = ExtResource("1_fx25u")
 
 [node name="Control_BufferTop" type="Control" parent="Control_Buffer/VBox_Focus"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control_Selected" parent="Control_Buffer/VBox_Focus" instance=ExtResource("4_5b7ey")]
+[node name="Control_Timer" parent="Control_Buffer/VBox_Focus" instance=ExtResource("4_5b7ey")]
 layout_mode = 2
+metadata/focus = true
 
 [node name="Control_BufferEnd" type="Control" parent="Control_Buffer/VBox_Focus"]
 layout_mode = 2
 size_flags_vertical = 3
-
-[editable path="Control_Buffer/VBox_Focus/Control_Selected"]

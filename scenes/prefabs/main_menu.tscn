@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpoqftvw7cmwc"]
+[gd_scene load_steps=3 format=3 uid="uid://cpoqftvw7cmwc"]
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_4l85i"]
-[ext_resource type="Texture2D" uid="uid://c518hyj8atfix" path="res://assets/image/edit2-200xx.png" id="1_w4qs0"]
 [ext_resource type="Texture2D" uid="uid://bq8mpkbaims03" path="res://assets/image/mute-200xx.png" id="2_dvepp"]
 
 [node name="HBox_Menu" type="HBoxContainer"]
@@ -22,12 +21,6 @@ custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 text = "Focus 
 Menu"
-
-[node name="Button_Edit" type="Button" parent="."]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-icon = ExtResource("1_w4qs0")
-expand_icon = true
 
 [node name="OptionButton" type="OptionButton" parent="."]
 layout_mode = 2
@@ -58,6 +51,5 @@ expand_icon = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="Button_Edit" to="." method="_on_button_edit_pressed"]
 [connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="toggled" from="Check_Mute" to="." method="_on_check_mute_toggled"]

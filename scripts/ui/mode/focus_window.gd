@@ -1,9 +1,6 @@
 extends VBoxContainer
 
-@onready var progress_pomo = $Prog_Pomo
-@onready var progress_min = $Prog_Minute
-
-@onready var focus = $Control_Selected
+@onready var focus = $Control_Timer
 
 var minute: bool = true #change to setting
 var working: bool = true

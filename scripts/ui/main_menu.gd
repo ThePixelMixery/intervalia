@@ -1,7 +1,5 @@
 extends HBoxContainer
 
-
-var editor = preload("res://scenes/windows/edit_window.tscn")
 var pc: PackedScene
 var mini_mode: PackedScene
 
@@ -9,7 +7,6 @@ var panel_tools: Panel
 var panel_timers: Panel
 
 func _ready():
-	signals.connect("open_editor", open_editor)
 	pc = load("res://scenes/mode/pc.tscn")
 	mini_mode = load("res://scenes/mode/mini.tscn")
 	if get_tree().current_scene.name == "Control_Pc":
@@ -20,23 +17,6 @@ func _on_check_mute_toggled(toggled_on:bool):
 	global.mute = toggled_on
 	signals.update_focus.emit(true)
 
-func open_editor():
-	global.pomo_node._on_button_stop_pressed()
-	add_child(editor.instantiate())
-
-func _on_button_edit_pressed():
-	var confirm_data = [
-		self,
-		editor,
-		"edit_pomo",
-		"About Editing Timers",
-		"Editting the pomodoro will reset it, are you sure you want to continue?",
-		"Reset",
-		"Empty dynamic break bank first"
-	]
-
-	var confirm_instance = confirm.instantiate(confirm_data)
-	add_child(confirm_instance)
 
 func _on_check_tools_toggled(toggled_on):
 	if toggled_on:

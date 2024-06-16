@@ -1,5 +1,8 @@
 extends Node
 
+
+
+
 var printer: VBoxContainer
 
 var selected: Control
@@ -12,6 +15,31 @@ func _ready():
 	signals.connect("new_scene", check_scene)
 	check_scene(get_tree().current_scene.name)
 
+func update_selected(node: Node):
+	selected = node
+	signals.select_set.emit()
+
+func default_pomo():
+	var default_data: Dictionary = {
+		title = "Default",
+		dynamic = true,
+		auto_rest = true,
+		mute = true,
+		auto_work = true,
+		#base_work = 25,
+		base_rest = 5,
+		base_long = 15,
+		base_pomo = 4,
+		base_work = 25,
+		rest = [0,0],
+		pomo = 0,
+		work = [25,0],
+		sound_work = "work-01",
+		sound_rest = "rest-01",
+		sound_long = "long-01",
+	}
+	return default_data
+	
 func update_text(node: Node, type: int, num1: int, num2: int = 0):
 	match type:
 		0: #simple

@@ -61,6 +61,7 @@ func _on_close_requested():
 func _on_button_other_pressed():
 	match type:
 		"edit_pomo":
+			unpacked_instance.focus = true
 			if global.selected.dynamic == true and global.selected.empty != true:
 				global.selected.queue_stop = true 
 				if global.selected.working:

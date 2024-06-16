@@ -28,7 +28,6 @@ var stop_image: Texture2D = preload("res://assets/image/stop-200xx.png")
 
 func populate_ui(pomo):
 	max_pomo = pomo["base_pomo"]
-	
 	title.text = pomo["title"]
 	rest.disabled = not pomo["auto_rest"]
 	dynamic.disabled = not pomo["dynamic"]

@@ -1,7 +1,6 @@
 extends Control
 
-func signal_buffer():
-	pass
+class_name pomodoro
 
 var working: bool = true
 var running: bool
@@ -35,13 +34,27 @@ var audio_long: Resource
 
 var pomo_data: Dictionary
 
+var focus: bool
+
 @onready var ui = $Margin/VBox_Pomo
 @onready var timer = $Timer
 @onready var add_window = preload("res://scenes/windows/add_time.tscn")
 
 func _ready():
-	default_pomo()
+	focus = get_meta("focus")
+	if focus:
+		unpack_data(global.default_pomo())
+		print("I am focus")
+		global.update_selected(self)
+		var title_button: Button = $Margin/VBox_Pomo/HBox_Title/Button_Title
+		title_button.flat = true
+
 	populate()
+
+static func instantiate(data: Dictionary):
+	var instance = load('res://scenes/prefabs/pomodoro.tscn').instantiate()
+	instance.unpack_data(data)
+	return instance
 
 func populate():
 	pack_data()
@@ -90,26 +103,6 @@ func unpack_data(data:Dictionary):
 	sound_work = data["sound_work"]
 	sound_rest = data["sound_rest"]
 	sound_long = data["sound_long"]
-	
-func default_pomo():
-	title = "Default"
-	dynamic = true
-	auto_rest = true
-	mute = true
-	auto_work = true
-	#base_work = 25
-	base_rest = 5
-	base_long = 15
-	base_pomo = 4
-	base_work = 25
-	rest = [0,0]
-	pomo = 0
-	work = [25,0]
-	sound_work = "work-01"
-	sound_rest = "rest-01"
-	sound_long = "long-01"
-	global.selected = self
-	signals.select_set.emit()
 
 func reset_variable(variable:String):
 	match variable:
@@ -120,6 +113,9 @@ func reset_variable(variable:String):
 			running = false
 	populate()
 	signals.update_focus.emit(true)
+
+func _on_button_title_toggled(toggled_on:bool):
+	global.update_selected(self)
 
 func _on_button_stop_pressed():
 	global.pront("stopped")
@@ -282,8 +278,6 @@ func add_to_rest(bulk: bool = false, amount: int = 0):
 		rest[1] += 1 * ratio
 		if rest[1] > 59:
 			rest[0] += 1
-			rest[1] -= 59
-	
-		
+			rest[1] -= 59		
 	ui.update_rest(rest)
 

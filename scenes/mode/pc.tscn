@@ -1,11 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=33 format=3 uid="uid://dmdmhbhfstocv"]
 
 [ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="1_tnr7r"]
 [ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/main/focus.tscn" id="2_40oed"]
 [ext_resource type="PackedScene" uid="uid://fdml1myssgve" path="res://scenes/main/settings.tscn" id="3_raklf"]
 [ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="4_1bhdb"]
 [ext_resource type="Script" path="res://scripts/ui/timers.gd" id="4_8vc41"]
+[ext_resource type="Texture2D" uid="uid://cl4d2s5jubnxs" path="res://assets/image/add-200xx.png" id="5_6kiug"]
+[ext_resource type="Texture2D" uid="uid://c518hyj8atfix" path="res://assets/image/edit2-200xx.png" id="5_8xjtm"]
 [ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="5_tlkag"]
+[ext_resource type="PackedScene" uid="uid://c48exuv8lxl23" path="res://scenes/prefabs/timer_category.tscn" id="5_v24vs"]
 [ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="6_0cq6r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p6dxv"]
@@ -167,6 +170,34 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 script = ExtResource("4_8vc41")
 
+[node name="HBox_Title" type="HBoxContainer" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Button_Edit" type="Button" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers/HBox_Title"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = ExtResource("5_8xjtm")
+expand_icon = true
+
+[node name="Label_Title" type="Label" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers/HBox_Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Selected:
+Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Add" type="Button" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers/HBox_Title"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+icon = ExtResource("5_6kiug")
+expand_icon = true
+
+[node name="VBox_Category" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers" instance=ExtResource("5_v24vs")]
+layout_mode = 2
+
 [node name="VBox_Notifications" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -198,3 +229,5 @@ bus = &"Long"
 
 [connection signal="toggled" from="Margin/HBox_Main/VBox_Main/HBoxTools/Check_Tools" to="Margin/HBox_Main/VBox_Main/HBoxTools/HBox_Menu" method="_on_check_tools_toggled"]
 [connection signal="toggled" from="Margin/HBox_Main/VBox_Main/HBoxTools/Check_Timers" to="Margin/HBox_Main/VBox_Main/HBoxTools/HBox_Menu" method="_on_check_timers_toggled"]
+[connection signal="pressed" from="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers/HBox_Title/Button_Edit" to="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers" method="_on_button_edit_pressed"]
+[connection signal="pressed" from="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers/HBox_Title/Button_Add" to="Margin/HBox_Main/Panel_Timers/Scroll_Timers/VBox_Timers" method="_on_button_add_pressed"]

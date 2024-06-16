@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c61uutjbw8lpq"]
+[gd_scene load_steps=7 format=3 uid="uid://c61uutjbw8lpq"]
 
 [ext_resource type="Script" path="res://scripts/prefabs/pomodoro.gd" id="1_k0yo6"]
 [ext_resource type="Script" path="res://scripts/prefabs/pomo_ui.gd" id="2_mluds"]
 [ext_resource type="Texture2D" uid="uid://cl4d2s5jubnxs" path="res://assets/image/add-200xx.png" id="3_rgpcp"]
+[ext_resource type="ButtonGroup" uid="uid://b1m2ovjg7ggey" path="res://selected.tres" id="4_5upmd"]
 [ext_resource type="Texture2D" uid="uid://b4yi5v15hu6f4" path="res://assets/image/stop-200xx.png" id="4_aqhkp"]
 [ext_resource type="Texture2D" uid="uid://cwkrdnk5wgbqu" path="res://assets/image/play-200xx.png" id="5_og1x6"]
 
@@ -43,6 +44,8 @@ expand_icon = true
 [node name="Button_Title" type="Button" parent="Margin/VBox_Pomo/HBox_Title"]
 layout_mode = 2
 size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("4_5upmd")
 
 [node name="HBox_Settings" type="HBoxContainer" parent="Margin/VBox_Pomo"]
 custom_minimum_size = Vector2(0, 40)
@@ -183,6 +186,7 @@ expand_icon = true
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="Margin/VBox_Pomo/HBox_Title/Button_Add" to="." method="_on_button_add_pressed"]
+[connection signal="toggled" from="Margin/VBox_Pomo/HBox_Title/Button_Title" to="." method="_on_button_title_toggled"]
 [connection signal="pressed" from="Margin/VBox_Pomo/HBox_Actions/Button_Stop" to="." method="_on_button_stop_pressed"]
 [connection signal="toggled" from="Margin/VBox_Pomo/HBox_Actions/Check_Work" to="." method="_on_check_work_toggled"]
 [connection signal="toggled" from="Margin/VBox_Pomo/HBox_Actions/Button_Play" to="." method="_on_button_play_toggled"]
