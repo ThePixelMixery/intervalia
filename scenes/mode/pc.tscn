@@ -1,11 +1,12 @@
-[gd_scene load_steps=29 format=3 uid="uid://dmdmhbhfstocv"]
+[gd_scene load_steps=30 format=3 uid="uid://dmdmhbhfstocv"]
 
-[ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/focus.tscn" id="1_fjvi8"]
-[ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="2_uf20b"]
-[ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="3_xdsuw"]
-[ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/prefabs/timer.tscn" id="4_2q0sj"]
-[ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="4_snrbn"]
-[ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="5_quqh7"]
+[ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="1_tnr7r"]
+[ext_resource type="PackedScene" uid="uid://c64unnd0sbjg3" path="res://scenes/main/focus.tscn" id="2_40oed"]
+[ext_resource type="PackedScene" uid="uid://fdml1myssgve" path="res://scenes/main/settings.tscn" id="3_raklf"]
+[ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="4_1bhdb"]
+[ext_resource type="Script" path="res://scripts/ui/timers.gd" id="4_8vc41"]
+[ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="5_tlkag"]
+[ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="6_0cq6r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p6dxv"]
 
@@ -74,11 +75,13 @@ Tree/styles/selected_focus = SubResource("StyleBoxEmpty_v36gt")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_eh2fm")
 Window/styles/embedded_unfocused_border = SubResource("StyleBoxEmpty_heye8")
 
-[node name="Control_Buffer" type="Control"]
+[node name="Control_Pc" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_d1udh")
@@ -103,42 +106,55 @@ visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="Control_Centre Guard" type="Control" parent="Margin/HBox_Main"]
+[node name="VBox_Main" type="VBoxContainer" parent="Margin/HBox_Main"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
+alignment = 1
 
-[node name="HBoxTools" type="HBoxContainer" parent="Margin/HBox_Main/Control_Centre Guard"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 80.0
-grow_horizontal = 2
+[node name="HBoxTools" type="HBoxContainer" parent="Margin/HBox_Main/VBox_Main"]
+layout_mode = 2
 
-[node name="Check_Tools" type="CheckButton" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+[node name="Check_Tools" type="CheckButton" parent="Margin/HBox_Main/VBox_Main/HBoxTools"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "
 "
 
-[node name="Control_ToolsBuffer" type="Control" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+[node name="Control_ToolsBuffer" type="Control" parent="Margin/HBox_Main/VBox_Main/HBoxTools"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control_OtherBuffer" type="Control" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+[node name="HBox_Menu" parent="Margin/HBox_Main/VBox_Main/HBoxTools" instance=ExtResource("1_tnr7r")]
+layout_mode = 2
+
+[node name="Control_OtherBuffer" type="Control" parent="Margin/HBox_Main/VBox_Main/HBoxTools"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Check_Timers" type="CheckButton" parent="Margin/HBox_Main/Control_Centre Guard/HBoxTools"]
+[node name="Check_Timers" type="CheckButton" parent="Margin/HBox_Main/VBox_Main/HBoxTools"]
 custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+button_pressed = true
+
+[node name="TabContainer" type="TabContainer" parent="Margin/HBox_Main/VBox_Main"]
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+
+[node name="Focus" parent="Margin/HBox_Main/VBox_Main/TabContainer" instance=ExtResource("2_40oed")]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Settings" parent="Margin/HBox_Main/VBox_Main/TabContainer" instance=ExtResource("3_raklf")]
+visible = false
 layout_mode = 2
 
 [node name="Panel_Timers" type="Panel" parent="Margin/HBox_Main"]
-visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Margin/HBox_Main/Panel_Timers"]
+[node name="Scroll_Timers" type="ScrollContainer" parent="Margin/HBox_Main/Panel_Timers"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -146,46 +162,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Margin/HBox_Main/Panel_Timers/ScrollContainer"]
-custom_minimum_size = Vector2(500, 2000)
+[node name="VBox_Timers" type="VBoxContainer" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-
-[node name="VBox_Main" type="VBoxContainer" parent="Margin"]
-layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="HBox_Menu" parent="Margin/VBox_Main" instance=ExtResource("2_uf20b")]
-layout_mode = 2
-
-[node name="Focus" parent="Margin/VBox_Main" instance=ExtResource("1_fjvi8")]
-custom_minimum_size = Vector2(480, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TabContainer" type="TabContainer" parent="Margin/VBox_Main"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-tab_alignment = 1
-
-[node name="Control" type="Control" parent="Margin/VBox_Main"]
-custom_minimum_size = Vector2(0, 270)
-layout_mode = 2
-
-[node name="Control_Timer" parent="Margin/VBox_Main/Control" instance=ExtResource("4_2q0sj")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -135.0
-offset_right = 250.0
-offset_bottom = 135.0
-grow_horizontal = 2
-grow_vertical = 2
+script = ExtResource("4_8vc41")
 
 [node name="VBox_Notifications" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -205,18 +185,16 @@ bus = &"Work"
 bus = &"Work"
 
 [node name="Audio_Work" type="AudioStreamPlayer" parent="Node_Audio"]
-stream = ExtResource("3_xdsuw")
+stream = ExtResource("4_1bhdb")
 bus = &"Work"
 
 [node name="Audio_Rest" type="AudioStreamPlayer" parent="Node_Audio"]
-stream = ExtResource("4_snrbn")
+stream = ExtResource("5_tlkag")
 bus = &"Rest"
 
 [node name="Audio_Long" type="AudioStreamPlayer" parent="Node_Audio"]
-stream = ExtResource("5_quqh7")
+stream = ExtResource("6_0cq6r")
 bus = &"Long"
 
-[connection signal="toggled" from="Margin/HBox_Main/Control_Centre Guard/HBoxTools/Check_Tools" to="Margin/VBox_Main/HBox_Menu" method="_on_check_tools_toggled"]
-[connection signal="toggled" from="Margin/HBox_Main/Control_Centre Guard/HBoxTools/Check_Timers" to="Margin/VBox_Main/HBox_Menu" method="_on_check_timers_toggled"]
-
-[editable path="Margin/VBox_Main/Control/Control_Timer"]
+[connection signal="toggled" from="Margin/HBox_Main/VBox_Main/HBoxTools/Check_Tools" to="Margin/HBox_Main/VBox_Main/HBoxTools/HBox_Menu" method="_on_check_tools_toggled"]
+[connection signal="toggled" from="Margin/HBox_Main/VBox_Main/HBoxTools/Check_Timers" to="Margin/HBox_Main/VBox_Main/HBoxTools/HBox_Menu" method="_on_check_timers_toggled"]

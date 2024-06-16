@@ -76,9 +76,10 @@ func pack_data():
 
 func unpack_data(data:Dictionary):
 	title = data["title"]
-	dynamic = data["dynamic"]
-	auto_work = data["auto_work"]
 	auto_rest = data["auto_rest"]
+	dynamic = data["dynamic"]
+	mute = data["mute"]
+	auto_work = data["auto_work"]
 	base_rest = data["base_rest"]
 	base_long = data["base_long"]
 	base_pomo = data["base_pomo"]
@@ -244,7 +245,6 @@ func timeout():
 		working = false if auto_rest else true
 		working = true if spill else false
 		running = true if auto_rest else false
-		ui.update_pomos(pomo)
 		
 	else:
 		if not dynamic:
@@ -267,8 +267,8 @@ func iterate_pomo():
 		global.play_sound(4, audio_long)
 	else:
 		global.play_sound(3, audio_rest)
+	ui.update_pomos(pomo,rest[0])
 	ui.update_rest(rest)
-	ui.update_pomos(pomo)
 
 
 func add_to_rest(bulk: bool = false, amount: int = 0):

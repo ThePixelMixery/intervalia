@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c64unnd0sbjg3"]
+
+[ext_resource type="Script" path="res://scripts/ui/windows/focus_window.gd" id="1_2bkro"]
+[ext_resource type="PackedScene" uid="uid://c61uutjbw8lpq" path="res://scenes/prefabs/timer.tscn" id="4_5b7ey"]
+
+[node name="Control_Focus" type="Control"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control_Buffer" type="Control" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox_Focus" type="VBoxContainer" parent="Control_Buffer"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_2bkro")
+
+[node name="Control_BufferTop" type="Control" parent="Control_Buffer/VBox_Focus"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control_Selected" parent="Control_Buffer/VBox_Focus" instance=ExtResource("4_5b7ey")]
+layout_mode = 2
+
+[node name="Control_BufferEnd" type="Control" parent="Control_Buffer/VBox_Focus"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[editable path="Control_Buffer/VBox_Focus/Control_Selected"]

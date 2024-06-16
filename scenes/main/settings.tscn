@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://fdml1myssgve"]
+
+[ext_resource type="Script" path="res://scripts/ui/settings.gd" id="1_o5smb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5smb")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox_Layout" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="Control_BufferStart" type="Control" parent="Margin/HBox_Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox_Settings" type="VBoxContainer" parent="Margin/HBox_Layout"]
+layout_mode = 2
+
+[node name="Display" type="Label" parent="Margin/HBox_Layout/VBox_Settings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Display"
+
+[node name="Grid_Display" type="GridContainer" parent="Margin/HBox_Layout/VBox_Settings"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Margin/HBox_Layout/VBox_Settings/Grid_Display"]
+layout_mode = 2
+text = "Change Resolution"
+
+[node name="OptionButton" type="OptionButton" parent="Margin/HBox_Layout/VBox_Settings/Grid_Display"]
+layout_mode = 2
+item_count = 2
+allow_reselect = true
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "3840x1080"
+popup/item_1/id = 1
+
+[node name="Control_BufferEnd" type="Control" parent="Margin/HBox_Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="item_selected" from="Margin/HBox_Layout/VBox_Settings/Grid_Display/OptionButton" to="." method="_on_option_button_item_selected"]

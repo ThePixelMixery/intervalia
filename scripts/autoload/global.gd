@@ -1,12 +1,16 @@
 extends Node
 
-@onready var printer: VBoxContainer = get_node("/root/Control_Buffer/VBox_Notifications")
-@onready var audio: Node = get_node("/root/Control_Buffer/Node_Audio")
+var printer: VBoxContainer
 
 var selected: Control
 var mute: bool
 var testing: bool
 var max_notif: int = 10
+var audio: Node
+
+func _ready():
+	signals.connect("new_scene", check_scene)
+	check_scene(get_tree().current_scene.name)
 
 func update_text(node: Node, type: int, num1: int, num2: int = 0):
 	match type:
@@ -26,6 +30,15 @@ func pront(text: String):
 		printer.add_child(new_label)
 		while printer.get_child_count() > max_notif:
 			printer.get_child(0).free()
+
+func check_scene(scene_name: String):
+	match scene_name:
+		"Control_Pc":
+			audio = get_node("/root/Control_Pc/Node_Audio")
+			printer = get_node("/root/Control_Pc/VBox_Notifications")
+		"Control_Mini":
+			audio = get_node("/root/Control_Mini/Node_Audio")
+			printer = get_node("/root/Control_Mini/VBox_Notifications")
 
 func play_sound(selection: int, sound: Resource, play: bool = true):
 	if not mute:

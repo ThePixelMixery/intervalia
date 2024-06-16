@@ -1,0 +1,229 @@
+[gd_scene load_steps=11 format=3 uid="uid://df5vftd8a2s48"]
+
+[ext_resource type="Script" path="res://scripts/ui/mode/mini.gd" id="1_0y5lb"]
+[ext_resource type="PackedScene" uid="uid://cpoqftvw7cmwc" path="res://scenes/prefabs/main_menu.tscn" id="1_kclq8"]
+[ext_resource type="Script" path="res://scripts/prefabs/pomodoro.gd" id="2_5ue5u"]
+[ext_resource type="Script" path="res://scripts/prefabs/pomo_ui.gd" id="3_ip45x"]
+[ext_resource type="Texture2D" uid="uid://cl4d2s5jubnxs" path="res://assets/image/add-200xx.png" id="4_8ovmp"]
+[ext_resource type="Texture2D" uid="uid://b4yi5v15hu6f4" path="res://assets/image/stop-200xx.png" id="5_cghfk"]
+[ext_resource type="Texture2D" uid="uid://cwkrdnk5wgbqu" path="res://assets/image/play-200xx.png" id="6_dorjh"]
+[ext_resource type="AudioStream" uid="uid://bclfstr8v3sol" path="res://assets/sound/work/work-01.mp3" id="7_wy3jd"]
+[ext_resource type="AudioStream" uid="uid://dm4c58g2cr6hr" path="res://assets/sound/rest/rest-01.mp3" id="8_s276i"]
+[ext_resource type="AudioStream" uid="uid://ddnue4qadrn5v" path="res://assets/sound/long/long-01.mp3" id="9_ve1rg"]
+
+[node name="Control_Mini" type="Control"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 500.0
+offset_bottom = 500.0
+script = ExtResource("1_0y5lb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+
+[node name="HBox_Menu" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_kclq8")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control_Timer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(208, 258)
+layout_mode = 2
+script = ExtResource("2_5ue5u")
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control_Timer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox_Pomo" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Control_Timer/Margin"]
+layout_mode = 2
+script = ExtResource("3_ip45x")
+
+[node name="HBox_Title" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Button_Add" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Title"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+icon = ExtResource("4_8ovmp")
+expand_icon = true
+
+[node name="Button_Title" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBox_Settings" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button_Rest" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+text = "AR"
+flat = true
+
+[node name="Button_Dynamic" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+text = "D"
+flat = true
+
+[node name="Button_Mute" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Settings"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+text = "M"
+flat = true
+
+[node name="Button_Work" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Settings"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+text = "AW"
+flat = true
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo"]
+layout_mode = 2
+
+[node name="HBox_Details" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Label_Rest" type="Label" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator1" type="VSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Long" type="Label" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Pomo" type="Label" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+
+[node name="Label_Work" type="Label" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo"]
+layout_mode = 2
+
+[node name="HBox_Actions" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Button_Stop" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+icon = ExtResource("5_cghfk")
+expand_icon = true
+
+[node name="Label_Rest" type="Label" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator1" type="VSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+
+[node name="Check_Work" type="CheckButton" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+button_pressed = true
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+
+[node name="Label_Work" type="Label" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Play" type="Button" parent="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("6_dorjh")
+expand_icon = true
+
+[node name="Timer" type="Timer" parent="MarginContainer/VBoxContainer/Control_Timer"]
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBox_Notifications" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Node_Audio" type="Node" parent="."]
+
+[node name="Audio_Working" type="AudioStreamPlayer" parent="Node_Audio"]
+bus = &"Work"
+
+[node name="Audio_Resting" type="AudioStreamPlayer" parent="Node_Audio"]
+bus = &"Work"
+
+[node name="Audio_Work" type="AudioStreamPlayer" parent="Node_Audio"]
+stream = ExtResource("7_wy3jd")
+bus = &"Work"
+
+[node name="Audio_Rest" type="AudioStreamPlayer" parent="Node_Audio"]
+stream = ExtResource("8_s276i")
+bus = &"Rest"
+
+[node name="Audio_Long" type="AudioStreamPlayer" parent="Node_Audio"]
+stream = ExtResource("9_ve1rg")
+bus = &"Long"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Title/Button_Add" to="MarginContainer/VBoxContainer/Control_Timer" method="_on_button_add_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions/Button_Stop" to="MarginContainer/VBoxContainer/Control_Timer" method="_on_button_stop_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions/Check_Work" to="MarginContainer/VBoxContainer/Control_Timer" method="_on_check_work_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Control_Timer/Margin/VBox_Pomo/HBox_Actions/Button_Play" to="MarginContainer/VBoxContainer/Control_Timer" method="_on_button_play_toggled"]
+[connection signal="timeout" from="MarginContainer/VBoxContainer/Control_Timer/Timer" to="MarginContainer/VBoxContainer/Control_Timer" method="_on_timer_timeout"]
