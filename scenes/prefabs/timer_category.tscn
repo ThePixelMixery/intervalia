@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://c48exuv8lxl23"]
+[gd_scene load_steps=3 format=3 uid="uid://c48exuv8lxl23"]
+
+[ext_resource type="Script" path="res://scripts/prefabs/category.gd" id="1_4dcau"]
+[ext_resource type="Texture2D" uid="uid://dw5wi0x1wi5yk" path="res://assets/image/edit-50xx.png" id="2_1rrw4"]
 
 [node name="VBox_Category" type="VBoxContainer"]
 anchors_preset = 15
@@ -6,15 +9,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4dcau")
 
 [node name="HSep_Top" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+
+[node name="Label_Title" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 25
 text = "Category"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+icon = ExtResource("2_1rrw4")
+expand_icon = true
 
 [node name="HSep_Bot" type="HSeparator" parent="."]
 layout_mode = 2

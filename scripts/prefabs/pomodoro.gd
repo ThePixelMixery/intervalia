@@ -44,7 +44,6 @@ func _ready():
 	focus = get_meta("focus")
 	if focus:
 		unpack_data(global.default_pomo())
-		print("I am focus")
 		global.update_selected(self)
 		var title_button: Button = $Margin/VBox_Pomo/HBox_Title/Button_Title
 		title_button.flat = true

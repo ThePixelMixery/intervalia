@@ -166,7 +166,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBox_Timers" type="VBoxContainer" parent="Margin/HBox_Main/Panel_Timers/Scroll_Timers"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(490, 0)
 layout_mode = 2
 script = ExtResource("4_8vc41")
 

@@ -125,7 +125,7 @@ func _on_button_confirm_pressed():
 		data["dynamic"] = dynamic.button_pressed
 		data["mute"] = mute.button_pressed
 		data["auto_work"] = autowork.button_pressed
-		new_timer.emit(data)
+		signals.new_timer.emit(data)
 		close()
 		
 
